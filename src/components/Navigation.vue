@@ -37,6 +37,8 @@
 
 header{
     display: flex ;
+    display: -webkit-box;
+    display: -ms-flexbox;
     flex-direction: row ;
     align-items: center ;
     justify-content: space-between ;
@@ -44,6 +46,8 @@ header{
 
 ul.title-wrapper{
     display: flex ;
+    display: -webkit-box;
+    display: -ms-flexbox;
     flex-direction: row ;
     align-items: center ;
     justify-content: space-between ;
