@@ -42,6 +42,13 @@ header{
     flex-direction: row ;
     align-items: center ;
     justify-content: space-between ;
+    padding: .5rem  3rem;
+    background: #eee;
+}
+
+.title-wrapper h1{
+    font-size: 2.5rem;
+    color: #000;
 }
 
 ul.title-wrapper{
@@ -52,6 +59,11 @@ ul.title-wrapper{
     align-items: center ;
     justify-content: space-between ;
     list-style-type: none ;
+}
+
+ul li{
+    padding: 5px 15px;
+    font-size: 2rem;
 }
 
 </style>
