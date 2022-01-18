@@ -1,29 +1,31 @@
 <template>
 <div class="container">
-     <div class="items1">
-     </div>
-     <div class="items2">
-
-     </div>
-     <div class="items3">
-
-     </div>
+    <div class="landing-screen">
+         <img src="../assets/bgr.jpg" alt="">
+    </div>
+    <div class="landing-screen">
+        
+    </div>
 </div>
 
 </template>
 
 <script>
     export default {
-        name:"landingPage"
+       name:"landingPage"
     }
 </script>
 
 <style>
 
 .container{
-    display: grid;
-    height: 600px;
-    grid-template-rows: auto 1fr auto;
+    position: relative ;
+}
+
+.landing-screen img{
+    object-fit: cover ;
+    min-width: 100% ;
+    height: 500px ;
 }
 
 </style>

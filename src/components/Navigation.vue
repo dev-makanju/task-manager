@@ -1,7 +1,7 @@
 <template>
      <header>
           <div class="title-wrapper">
-              <router-link to="#">
+              <router-link to="/">
                   <h1>Task Timer</h1>
               </router-link>
           </div>
@@ -13,7 +13,7 @@
                   <router-link :to="{ name:'signIn'}">Sign in</router-link>
               </li>
               <li class="link-wrapper">
-                  <router-link to="#">Task</router-link>
+                  <router-link :to="{ name:'task'}">Task</router-link>
               </li>
               <li class="hamburger-wrapper">
                    <div class="link-wrapper">
