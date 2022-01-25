@@ -1,21 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <Navigation/>
-         
+    <div v-if="!showNavbar" id="nav">
+        <Navigation/>
     </div>
-    <router-view/>
+      <router-view/>
+    <div v-if="!showNavbar" id="nav">
+        <Footer/>
+    </div>
   </div>
 </template>
 <script>
 
 import Navigation from './components/Navigation.vue'
+import Footer from './components/Footer.vue'
 
 export default {
-    name:"entryPoint",
+    name:"rootApp",
     components:{
-      Navigation
+        Navigation , Footer
+    },
+    data(){
+        return{
+           showNavbar : null
+        }
+    },
+    created(){
+       this.checkRoute();
+    },
+    methods:{
+       checkRoute(){
+          if(this.$route.name === "signIn" || this.$route.name === "signUp" || this.$route.name === "Task"){
+              this.showNavbar = true;
+              return;
+           }this.showNavbar = false;
+       }
+    },
+    watch:{
+      $route(){
+          this.checkRoute()
+      }
     }
+
 }
 </script>
 
@@ -25,9 +50,9 @@ export default {
 **********/
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital@1&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital@1&family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&display=swap');
 
 
 *{
@@ -44,7 +69,7 @@ p{
    border-radius: 0.3rem;
    cursor: pointer;
    margin-top: 1rem;
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Roboto', sans-serif;
 }
 
 h1 , h2 , h3 , h4 , h5 , h6{
@@ -53,22 +78,27 @@ h1 , h2 , h3 , h4 , h5 , h6{
   border-radius: 10rem;
   text-transform: uppercase;
   display: inline-block;
-  border-radius: 0.3rem;
   cursor: pointer;
+  border-radius: 0.3rem;
   margin-top: 1rem;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 ul , ol , li , a {
   list-style-type: none ;
   text-decoration: none ;
   font-family: 'Montserrat', sans-serif;
+  font-weight:  400;
+  color: rgb(33, 64, 138) ;
 }
 
 html {
    font-size: 62.5%;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
+   min-height: 100% ;
+   line-height: 1.7;
+   outline: none;
 }
 
 body{
@@ -116,6 +146,104 @@ body{
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
    -ms-border-radius: 5px;
+}
+
+
+/*****LOGIN AND REGISTER****/
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0 ;
+    width: 100%;
+    height: 100%;
+}
+
+.form-control{
+    width: 40%;
+    margin: 0px auto ;
+}
+
+@media only screen and (max-width: 450px) {
+    .form-control{
+        width: 90%;
+    }
+}
+
+.form-control p{
+    color: #300;
+    font-family: 'raleways' , sans-serif ;
+    text-transform: lowercase;
+    font-size: 17px;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.form-control.header{
+    padding: 20px 0px ;
+    width: 100% ;
+    background: #eee ;
+}
+
+.form-control.header h1{
+    color:   rgb(33, 64, 138) ;
+    padding: 0px 40px;
+}
+
+@media only screen and (max-width: 450px) {
+    .form-control.header h1{
+        padding: 0px 10px ;
+    }
+}
+
+.form-control-inputs{
+    margin-top: 10px;
+    height: 80px;
+}
+
+.form-control-inputs label{
+    font-size: 17px ;
+    color:  rgb(33, 64, 138) ;
+    display: block;
+    display: -webkit-box;
+}
+
+.form-control-inputs input{
+    width: 100% ;
+    box-sizing: border-box;
+    padding: 8px ;
+    outline: none ;
+}
+
+.btn.btn-auth{
+    margin-top: 1em ;
+    background:  rgb(33, 64, 138) ;
+    border: none ;
+    padding: 7px;
+    color: #eee;
+    font-size: 17px;
+    cursor: pointer ;
+}
+
+.det-wraps{
+    position: relative ;
+}
+
+.icon{
+    position: absolute ;
+    font-size: 17px;
+    padding: 7px;
+    background: #eee;
+    border-radius: 50%;
+    right: 5px;
+    top: 2px;
+}
+
+.error{
+    color: #e74e3c ;
+    font-size:12px;
 }
 
 </style>

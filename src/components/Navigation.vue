@@ -6,16 +6,19 @@
               </router-link>
           </div>
           <ul class="title-wrapper">
-              <li class="link-wrapper">
+              <li v-if="!isMobile" class="link-wrapper">
+                  <router-link  :to="{ name:'Home'}">Home</router-link>
+              </li>
+              <li v-if="!isMobile" class="link-wrapper">
                   <router-link :to="{ name:'signUp'}">Sign up</router-link>
               </li>
-              <li class="link-wrapper">
+              <li v-if="!isMobile" class="link-wrapper">
                   <router-link :to="{ name:'signIn'}">Sign in</router-link>
               </li>
-              <li class="link-wrapper">
-                  <router-link :to="{ name:'task'}">Task</router-link>
+              <li v-if="!isMobile" class="link-wrapper">
+                  <router-link :to="{name:'Task'}">Dashboard</router-link>
               </li>
-              <li class="hamburger-wrapper">
+              <li v-show="showHamburger" class="hamburger-wrapper">
                    <div class="link-wrapper">
                         <font-awesome-icon :icon="['fas', 'bars']"/>
                    </div>
@@ -29,7 +32,33 @@
 
 <script>
     export default {
-        
+        name:"",
+        props:[],
+        data(){
+            return{
+                isMobile: null,
+                screenWidth: null,
+                showHamburger: null
+            }
+        },
+        created(){
+            addEventListener('resize' , this.checkMobileDevice )
+            this.checkMobileDevice();
+        },
+        methods:{
+            checkMobileDevice(){
+              this.screenWidth = window.innerWidth
+              if(this.screenWidth <= 768 ){
+                this.isMobile = true;
+                this.showHamburger = true
+                return;
+              }this.isMobile = false ;
+             this.showHamburger = false
+            }
+        },
+        watch:{
+
+        }
     }
 </script>
 
@@ -44,6 +73,14 @@ header{
     justify-content: space-between ;
     padding: .5rem  3rem;
     background: #eee;
+}
+
+@media only screen and (max-width: 768px) {
+    
+header{
+    padding: .5rem;
+}
+
 }
 
 .title-wrapper h1{
@@ -66,4 +103,17 @@ ul li{
     font-size: 2rem;
 }
 
+.hamburger-wrapper{
+    position: relative;
+    padding: 7px;
+    width: 25px;
+    height: 20px;
+}
+
+.hamburger-wrapper .link-wrapper{
+    position: absolute;
+    top: 0 ;
+    font-size: 24px ;
+    cursor: pointer;
+}
 </style>

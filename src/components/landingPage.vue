@@ -1,10 +1,48 @@
 <template>
 <div class="container">
-    <div class="landing-screen">
-         <img src="../assets/bgr.jpg" alt="">
+    <div class="landing-page-image main-screen-wrapper">
+         <div class="landing-screen">
+             <img src="../assets/bgr.jpg" alt="">
+        </div>
+        <div class="image-overlay"></div>
+        <div class="image-overlay-wrapper">
+             <div class="l-image-info ">
+                <h1>You can maximise your daily app project by setting up an account with us</h1>
+             </div>
+             <div class="l-image-info">
+                <router-link class="btn-btn-link"  :to="{name:'signUp'}">Get started</router-link>
+             </div>
+        </div>
     </div>
-    <div class="landing-screen">
-        
+    <!----landing page--->
+    <div class="landing-screen main-screen">
+        <div class="landing-screen-item header">
+            <h2 class="about-info-header">You can maximise your daily app project by setting up an account with us</h2>
+        </div>
+        <div class="landing-screen-item main">
+            <div class="main-flex-items children">
+                <div class="children-items">
+                    <img src="../assets/Screenshot from 2022-01-21 20-18-48.png" alt="">
+                </div>
+                <div class="children-items">
+                    <img src="../assets/Screenshot from 2022-01-21 20-18-40.png" alt="">
+                </div>
+                <div class="children-items">
+                    <img src="../assets/Screenshot from 2022-01-21 20-18-26.png" alt="">
+                </div>
+                <div class="children-items">
+                    <img src="../assets/bgr.jpg" alt="">
+                </div>
+             </div>
+             <div class="main-flex-items">
+                  <div class="about-wrapper">
+                      <h1>About us</h1>
+                      <p class="about-info">
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                      </p>
+                  </div>
+             </div>
+         </div>
     </div>
 </div>
 
@@ -17,15 +55,135 @@
 </script>
 
 <style>
+.l-image-info{
+    margin: 10px;
+}
 
-.container{
+.l-image-info h1 {
+    font-family: 'Montserrat' serif;
+}
+
+.btn-btn-link{
+    padding: 10px 20px;
+    border-radius: 17px ;
+    color: #fff;
+    font-size: 17px;
+    background: rgb(36, 81, 185);
+    margin-top: 20px;
+}
+
+.landing-screen-item.header{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-wrapper{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+}
+
+.about-wrapper h1{
+    color:  rgb(2, 40, 129);
+    font-family: 'Montserrat', sans-serif ;
+}
+
+.about-info{
+    color:  rgb(2, 40, 129);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-transform: lowercase;
+    font-size: 16px;
+}
+
+.about-info-header{
+    color:  rgb(2, 40, 129);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: lowercase;
+    font-size: 24px;
+}
+
+.landing-page-image.main-screen-wrapper{
     position: relative ;
 }
 
+.image-overlay{
+    position: absolute;
+    background: #000;
+    height: 500px ;
+    object-fit: cover ;
+    width: 100%;
+    top: 0;
+    opacity: .7 ;
+}
+
+.image-overlay-wrapper{
+    position: absolute;
+    height: 500px ;
+    object-fit: cover ;
+    width: 100%;
+    top: 0;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    flex-direction: column ;
+
+}
+
+
 .landing-screen img{
     object-fit: cover ;
-    min-width: 100% ;
+    width: 100% ;
     height: 500px ;
+    background-position: center;
+}
+
+/**
+*Landing page 
+*Landing screen
+**/
+.landing-screen.main-screen{
+    display: flex;
+    flex-direction: column ;
+}
+
+.landing-screen-item.header{
+    height: 200px;
+}
+
+.landing-screen-item.main{
+    display: flex ;
+    flex-direction: row;
+    padding: 20px 30px;
+}
+
+
+
+.main-flex-items{
+    width: 100%;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.main-flex-items.children{
+    display: grid ;
+    grid-template-columns: 1fr 1fr;
+}
+
+.main-flex-items .children-items:hover{
+    opacity: .7;
+}
+
+.children-items img{
+    border-radius: 7px ;
+    width: 250px ;
+    height: 250px ;
+    box-shadow: 0px 2px 5px rgba(0 , 0 , 0 , .3);
 }
 
 </style>

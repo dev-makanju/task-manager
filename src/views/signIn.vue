@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="center">
         <Login/>
     </div>
 </template>
@@ -9,8 +9,9 @@
     export default {
         name:"loginPage",
         components:{
-            Login
+            Login 
         }
     }
 </script>
+
 
