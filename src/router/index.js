@@ -24,7 +24,17 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Task',
-    component: () => import('../views/Task.vue')
+    component: () => import('../views/dashboard.vue')
+  },
+  {
+    path: '/dashboard/create-task',
+    name: 'AddTask',
+    component: () => import('../views/create-task.vue')
+  },
+  {
+    path: '/dashboard/tasks',
+    name: 'allTask',
+    component: () => import('../views/Tasks.vue')
   },
 ]
 

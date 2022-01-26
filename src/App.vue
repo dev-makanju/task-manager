@@ -29,7 +29,7 @@ export default {
     },
     methods:{
        checkRoute(){
-          if(this.$route.name === "signIn" || this.$route.name === "signUp" || this.$route.name === "Task"){
+          if(this.$route.name === "signIn" || this.$route.name === "signUp" || this.$route.name === "Task" || this.$route.name === "AddTask" || this.$route.name === "allTask"){
               this.showNavbar = true;
               return;
            }this.showNavbar = false;

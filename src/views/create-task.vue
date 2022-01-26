@@ -4,21 +4,18 @@
         <Modal/>
         <div class="dashboard-container">
         <Sidenav/>
-        <Main/> 
-        <Rightbar/>
         </div>
     </div>
 </template>
 
 <script>
-    import Loading from '../components/Loading.vue'
-    import Modal from '../components/modal.vue'
-    import Main from '../components/main.vue'
+    // import Loading from '../components/Loading.vue'
+    // import Modal from '../components/modal.vue'
     import Sidenav from '../components/sidenav.vue'
-    import Rightbar from '../components/rightbar.vue'
     export default {
+        name:"AddTask",
         components:{
-            Loading , Modal , Main , Sidenav , Rightbar
+             Sidenav
         }
     }
 </script>

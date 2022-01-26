@@ -4,26 +4,143 @@
         <Modal/>
         <div class="dashboard-container">
         <Sidenav/>
-        <Main/> 
-        <Rightbar/>
+            <div class="tasks-wrapper">
+                  <h2>All Created Task</h2>
+                  <table>
+                      <thead>
+                            <th>s/n</th>
+                            <th>title</th>
+                            <th>created at</th>
+                            <th>status</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                      </thead>
+                      <tbody>
+                             <tr>
+                                 <td>1</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>2</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>3</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>4</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>5</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td>6</td>
+                                 <td>build fadaka</td>
+                                 <td>20th , Aug 2022 </td>
+                                 <td>pending</td>
+                                 <td>
+                                     edi
+                                 </td>
+                                 <td>
+                                     del
+                                 </td>
+                             </tr>
+                      </tbody>
+                  </table>
+           </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Loading from '../components/Loading.vue'
-    import Modal from '../components/modal.vue'
-    import Main from '../components/main.vue'
+    //import Loading from '../components/Loading.vue'
+    //import Modal from '../components/modal.vue'
     import Sidenav from '../components/sidenav.vue'
-    import Rightbar from '../components/rightbar.vue'
     export default {
+        name:"AddTask",
         components:{
-            Loading , Modal , Main , Sidenav , Rightbar
+             Sidenav
         }
     }
 </script>
 
 <style>
+
+/********
+***Add a table cell and padding on it
+********/
+
+.tasks-wrapper{
+    margin: 4em auto;
+}
+
+table{
+    border: 1px solid rgb(189, 201, 230);
+    border-radius: 7px;
+    border-collapse: collapse;
+}
+
+
+th{
+   border: 1px solid rgb(189, 201, 230);
+   padding: 7px 20px;
+   font-size: 14px;
+   font-weight: bold;
+}
+
+td{
+   border: 1px solid rgb(189, 201, 230);
+   padding: 7px 20px;
+   font-size: 14px;
+}
+
+tr:nth-child(odd){
+    background: #eee ;
+}
+
 
 .one{
     width: 20px;
@@ -231,7 +348,7 @@
 
 .dashboard-container{
     display: grid ;
-    grid-template-columns: 240px 1fr 350px;
+    grid-template-columns: 240px 1fr ;
     grid-template-areas: 'aside main';
     height: 100vh;
 }
