@@ -2,7 +2,7 @@
      <header>
           <div class="title-wrapper">
               <router-link to="/">
-                  <h1>Task Timer</h1>
+                  <h1>Task <span class="small-font">Timer</span></h1>
               </router-link>
           </div>
           <ul class="title-wrapper">
@@ -38,7 +38,8 @@
             return{
                 isMobile: null,
                 screenWidth: null,
-                showHamburger: null
+                showHamburger: null,
+                showNavbar: null
             }
         },
         created(){
@@ -85,7 +86,12 @@ header{
 
 .title-wrapper h1{
     font-size: 2.5rem;
-    color: #000;
+    color: rgb(36, 81, 185);
+    font-family: 'Montserrat' serif;
+}
+
+.small-font{
+    font-size: 12px;
 }
 
 ul.title-wrapper{

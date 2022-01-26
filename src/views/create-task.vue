@@ -4,6 +4,12 @@
         <Modal/>
         <div class="dashboard-container">
         <Sidenav/>
+        <div class="task-add-wrapper">
+            <div class="task-input-wrapper">
+                  <input type="text" placeholder="Enter a task title">
+            </div>
+            <button class="btn-task-button">Create-task</button>
+        </div>
         </div>
     </div>
 </template>
@@ -21,6 +27,34 @@
 </script>
 
 <style>
+
+.task-add-wrapper{
+    margin: 0px auto;
+    border: 1px solid rgb(170, 175, 187);
+    padding: 60px 60px;
+    width:  50% ;
+    background: #eee;
+}
+
+.btn-task-button{
+    margin-top: 10px;
+    padding: 7px ;
+    background:   rgb(36, 81, 185);
+    border: 1px solid rgb(36, 81, 185);
+    color: #eee;
+    border-radius: 10px ;
+    outline: none;
+}
+
+.task-input-wrapper input{
+    padding: 7px;
+    border: 1px solid rgb(189, 201, 230);
+    outline: none;
+    border-radius: 10px ;
+    font-family: 'Montserrat' , serif;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 .one{
     width: 20px;
@@ -228,7 +262,7 @@
 
 .dashboard-container{
     display: grid ;
-    grid-template-columns: 240px 1fr 350px;
+    grid-template-columns: 240px 1fr;
     grid-template-areas: 'aside main';
     height: 100vh;
 }

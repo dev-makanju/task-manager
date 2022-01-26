@@ -58,9 +58,9 @@
 .four{
     width: 50px;
     height: 50px;
+    position: absolute ;
     border-radius: 50%;
     background:  rgb(19, 67, 180);
-    position: absolute ;
     left: 10px ;
     bottom: 10px ;
 }

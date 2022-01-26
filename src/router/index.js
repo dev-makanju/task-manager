@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import signUp from "../views/signUp.vue"
+import Notfound from "../views/error.vue"
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/dashboard/tasks',
     name: 'allTask',
     component: () => import('../views/Tasks.vue')
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: Notfound
   },
 ]
 

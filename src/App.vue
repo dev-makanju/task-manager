@@ -54,6 +54,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital@1&family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,400&display=swap');
+
+
 
 *{
   margin: 0;
@@ -69,7 +73,7 @@ p{
    border-radius: 0.3rem;
    cursor: pointer;
    margin-top: 1rem;
-   font-family: 'Roboto', sans-serif;
+   font-family: 'Merriweather', serif;
 }
 
 h1 , h2 , h3 , h4 , h5 , h6{
@@ -81,13 +85,13 @@ h1 , h2 , h3 , h4 , h5 , h6{
   cursor: pointer;
   border-radius: 0.3rem;
   margin-top: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Merriweather', serif;
 }
 
 ul , ol , li , a {
   list-style-type: none ;
   text-decoration: none ;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Merriweather', serif;
   font-weight:  400;
   color: rgb(33, 64, 138) ;
 }

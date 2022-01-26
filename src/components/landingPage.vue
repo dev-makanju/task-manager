@@ -22,16 +22,36 @@
         <div class="landing-screen-item main">
             <div class="main-flex-items children">
                 <div class="children-items">
-                    <img src="../assets/Screenshot from 2022-01-21 20-18-48.png" alt="">
+                    <div class="picture-info">
+                        <img src="../assets/Screenshot from 2022-01-21 20-18-48.png" alt="">
+                    </div>
+                    <div class="picture-info">
+                        <h3>Open an account</h3>
+                    </div>
                 </div>
                 <div class="children-items">
-                    <img src="../assets/Screenshot from 2022-01-21 20-18-40.png" alt="">
+                    <div class="picture-info">
+                        <img src="../assets/Screenshot from 2022-01-21 20-18-40.png" alt="">
+                    </div>
+                    <div class="picture-info">
+                        <h3>Sign in to your account</h3>
+                    </div>
                 </div>
                 <div class="children-items">
-                    <img src="../assets/Screenshot from 2022-01-21 20-18-26.png" alt="">
+                    <div class="picture-info">
+                        <img src="../assets/Screenshot from 2022-01-21 20-18-26.png" alt="">
+                    </div>
+                    <div class="picture-info">
+                        <h3>dashboard</h3>
+                    </div>
                 </div>
                 <div class="children-items">
-                    <img src="../assets/bgr.jpg" alt="">
+                    <div class="picture-info">
+                        <img src="../assets/bgr.jpg" alt="">
+                    </div>
+                    <div class="picture-info">
+                        <h3>Visit our website</h3>
+                    </div>
                 </div>
              </div>
              <div class="main-flex-items">
@@ -60,7 +80,7 @@
 }
 
 .l-image-info h1 {
-    font-family: 'Montserrat' serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .btn-btn-link{
@@ -92,15 +112,19 @@
 
 .about-info{
     color:  rgb(2, 40, 129);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-family: 'Merriweather', serif;
+
+    font-weight: 600;
     text-transform: lowercase;
     font-size: 16px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
 }
 
 .about-info-header{
     color:  rgb(2, 40, 129);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Merriweather', serif;
+
     text-transform: lowercase;
     font-size: 24px;
 }
@@ -134,7 +158,7 @@
 
 
 .landing-screen img{
-    object-fit: cover ;
+    object-fit: cover;
     width: 100% ;
     height: 500px ;
     background-position: center;
@@ -144,6 +168,17 @@
 *Landing page 
 *Landing screen
 **/
+.picture-info{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.picture-info h3{
+   text-align: center;
+   color: rgb(36, 81, 185);
+}
+
 .landing-screen.main-screen{
     display: flex;
     flex-direction: column ;
@@ -175,9 +210,23 @@
     grid-template-columns: 1fr 1fr;
 }
 
+@media (max-width: 600px) {     
+    .main-flex-items.children{
+        grid-template-columns: 1fr;
+    }
+}
+
 .main-flex-items .children-items:hover{
     opacity: .7;
 }
+
+.children-items{
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+    flex-direction: column;
+}
+
 
 .children-items img{
     border-radius: 7px ;
@@ -186,4 +235,12 @@
     box-shadow: 0px 2px 5px rgba(0 , 0 , 0 , .3);
 }
 
+
+@media (max-width: 900px) {
+   .landing-screen-item.main{
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }   
+}
 </style>

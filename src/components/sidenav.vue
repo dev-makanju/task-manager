@@ -10,7 +10,7 @@
                 </div>
                 <ul class="side-nav">
                     <li>
-                        <router-link class="side-wraps" :to="{name:'dashboard'}">
+                        <router-link class="side-wraps" :to="{name:'Task'}">
                             <div class="wrap-child">
                                 <font-awesome-icon :icon="['fas', 'home']"/>
                             </div> 

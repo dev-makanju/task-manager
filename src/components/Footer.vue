@@ -19,7 +19,6 @@
              <div class="footer-items">
                  <li>About</li>
                  <li>Contact</li>
-                 <li>Address: Obafemi awolowo Way lagos Nigeria</li>
              </div>
          </div>
     </footer>
@@ -37,12 +36,18 @@
          opacity: .7;
          margin-top: 10%;
          display: flex ;
-         flex-direction: row;
-         flex-wrap: wrap ;
-         padding: 10px 40px;
-         height: 200px;
+         flex-direction: column ;
+         padding: 5px ;
          justify-content:space-between ;
          align-items: center;
+     }
+
+     @media (min-width: 600px) {
+         footer{
+         flex-direction: row;
+         padding: 10px 40px;
+         height: 200px;
+     }
      }
 
      .brand-name{
@@ -53,9 +58,21 @@
         font-family: 'Montserrat' serif;    
      }
 
+     @media (max-width:450px) {
+         .brand-name h1{ 
+             font-size: 14px;   
+          }
+     }
+
      .brand-name.brand-item{
          display: flex;
          flex-direction: row;
+     }
+
+     @media (max-width:450px) {
+        .brand-name.brand-item{
+            gap: 30px;
+        }
      }
 
      .footer-items{
@@ -71,6 +88,19 @@
 
      .links{
         color: #eee;
+     }
+
+     @media (max-width:450px) {
+        .links{
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .footer-items li{
+           font-family: 'Montserrat' serif;
+           font-weight: bold ;
+           color: #fff;
+           cursor: pointer;
+        }
      }
 
 </style>
