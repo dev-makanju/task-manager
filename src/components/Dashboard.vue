@@ -57,18 +57,6 @@
 </script>
 
 <style>
-.side-link-wrapper{
-    display: flex ;
-    justify-content: flex-end ;
-}
-
-.link-wrapper{
-    font-size: 14px;
-    color: rgb(36, 81, 185);
-    display: flex ;
-    padding: 4px;
-    cursor: pointer;
-}
 
 .one{
     width: 20px;
@@ -273,11 +261,10 @@
     width: 80%;
 }
 
-
 .dashboard-container{
     display: grid ;
     grid-template-columns: 240px 1fr 350px;
-    grid-template-areas: 'aside main';
+    grid-template-areas: 'aside main' ;
     height: 100vh;
 }
 
@@ -441,19 +428,6 @@
     font-size: 14px;
     /***font-family: ;**/
     font-weight: 500;
-}
-
-.user-info{
-    display: flex;
-    flex-direction: column ;
-}
-
-.user-info p{
-    color:  rgb(2, 40, 129);
-}
-
-.user-info span{
-    color:  rgb(2, 40, 129);
 }
 
 .main{
