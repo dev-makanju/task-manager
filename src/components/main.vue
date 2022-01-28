@@ -72,16 +72,12 @@
 
 <script>
     import adminHeader from '../components/admin-header'
-
     export default {
         name:"adminMain",
         props:['isAdminMobile'],
         components:{
            adminHeader,
         },
-        methods:{
-
-        }
     }
 </script>
 

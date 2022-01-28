@@ -68,6 +68,35 @@
 
 <style scoped>
 
+.aside{
+    background: whitesmoke;
+    box-shadow: 0px 2px 5px 3px rgba(13, 6, 214, 0.304);
+    z-index: 111;
+    grid-area: 'aside' ;
+    display: flex ;
+    flex-direction: column ;
+    max-width: 240px;
+    transition: all 1s ease;
+}
+
+@media (max-width:900px) {
+    .aside{
+       position: absolute ;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: -350px;
+    }
+    .aside.open{
+       position: fixed;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: 0px ;
+       z-index: 2222;
+    }
+}
+
 .side-link-wrapper{
     display: flex ;
     justify-content: flex-end ;

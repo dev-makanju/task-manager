@@ -3,9 +3,10 @@
         <Loading/>
         <Modal/>
         <div class="dashboard-container">
-        <Sidenav/>
+        <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>
         <main class="main">
             <div class="tasks-wrapper">
+                <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
                   <h2>All Created Task</h2>
                 <table>
                     <thead>
@@ -23,10 +24,10 @@
                             <td>20th , Aug 2022 </td>
                             <td>pending</td>
                                 <td>
-                                     edi
+                                     edit
                                 </td>
                                 <td>
-                                     del
+                                     edit
                                 </td>
                              </tr>
                              <tr>
@@ -100,16 +101,49 @@
 <script>
     //import Loading from '../components/Loading.vue'
     //import Modal from '../components/modal.vue'
+    import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
     export default {
-        name:"AddTask",
+        name:"addTask",
         components:{
-             Sidenav
+             Sidenav,adminHeader
+        },
+        data(){
+            return{
+                isAdminMobile:null,
+                adminScreenWidth:null
+            }
+        },
+        created(){
+            this.checkSreensize();
+            addEventListener("resize" , this.checkSreensize)
+        },
+        methods:{
+            checkSreensize(){
+                this.adminScreenWidth = window.innerWidth
+                if(this.adminScreenWidth <= 900 ){
+                    this.isAdminMobile = true;
+                    return;
+                }this.isAdminMobile = false
+            },
+            closeNavbar(){
+                const aside = document.querySelector("#aside")
+                aside.classList.remove('open')
+            },
+            openNavbar(){
+                const aside = document.querySelector("#aside")
+                aside.classList.add('open')
+            }
+        },
+        watch:{
+            $route(){
+                this.checkSreensize()
+            }
         }
     }
 </script>
 
-<style>
+<style scoped>
 
 /********
 ***Add a table cell and padding on it
@@ -127,6 +161,13 @@ table{
     border: 1px solid rgb(189, 201, 230);
     border-radius: 7px;
     border-collapse: collapse;
+    overflow-x: scroll;
+}
+
+@media (max-width: 600px){
+    table{
+       overflow-x: scroll ;
+    }
 }
 
 
@@ -168,7 +209,7 @@ tr:nth-child(odd){
 @media (max-width:900px) {
     .dashboard-container{
         display: grid ;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr ;
         grid-template-areas: 'main';
         height: 100vh;
     }

@@ -27,6 +27,7 @@
 
 <style scoped>
 
+
 .task-header{
     display: flex;
     align-items: center;
@@ -42,6 +43,31 @@
     width: 100%;
     display: flex ;
     flex-direction: column;
+}
+
+.p-overlay{
+    width: 20% ;
+    height: 7px ;
+    background:  rgb(36, 81, 185) ;
+    border-radius: 17px;
+    position: absolute;
+    top: 0 ;
+    left: 0;
+}
+
+.p-tag{
+    position: relative ;
+}
+
+.background{
+    position: relative;
+    flex-grow: 10px;
+    width: 100%;
+    height: 7px ;
+    background: #eee ;
+    border-radius: 17px ;
+    top: 0;
+    left: 0;
 }
 
 .p-overlay{
