@@ -53,7 +53,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital@1&family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,400&display=swap');
 

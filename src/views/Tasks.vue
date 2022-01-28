@@ -4,29 +4,30 @@
         <Modal/>
         <div class="dashboard-container">
         <Sidenav/>
+        <main class="main">
             <div class="tasks-wrapper">
                   <h2>All Created Task</h2>
-                  <table>
-                      <thead>
-                            <th>s/n</th>
-                            <th>title</th>
-                            <th>created at</th>
-                            <th>status</th>
-                            <th>edit</th>
-                            <th>delete</th>
-                      </thead>
-                      <tbody>
-                             <tr>
-                                 <td>1</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
+                <table>
+                    <thead>
+                        <th>s/n</th>
+                        <th>title</th>
+                        <th>created at</th>
+                        <th>status</th>
+                        <th>edit</th>
+                        <th>delete</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>build fadaka</td>
+                            <td>20th , Aug 2022 </td>
+                            <td>pending</td>
+                                <td>
                                      edi
-                                 </td>
-                                 <td>
+                                </td>
+                                <td>
                                      del
-                                 </td>
+                                </td>
                              </tr>
                              <tr>
                                  <td>2</td>
@@ -90,7 +91,8 @@
                              </tr>
                       </tbody>
                   </table>
-           </div>
+            </div>
+           </main>
         </div>
     </div>
 </template>
@@ -363,6 +365,48 @@ tr:nth-child(odd){
     max-width: 240px;
 }
 
+
+@media (max-width:900px) {
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns: 1fr;
+        grid-template-areas: 'main';
+        height: 100vh;
+    }
+
+    .aside{
+       position: absolute ;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: -350px;
+    }
+    .aside.open{
+       position: fixed;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: 0px ;
+       z-index: 222;
+    }
+}
+
+@media (max-width:650px){
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns: 1fr;
+        grid-template-areas: 'aside main';
+        height: 100vh;
+    }
+
+    .wrapper-items{
+        width: 90%;
+        margin: 20px auto; 
+    }
+}
+
+
+
 .left-tab{
     display: flex ;
     justify-content: space-between;
@@ -407,13 +451,15 @@ tr:nth-child(odd){
     top: -50px;
 }
 
-.task-wrapp{
+.task-wrapper{
     display: flex ;
-    flex-direction: column;
-    position: absolute;
-    bottom: 25px;
+    flex-direction: column ;
+    align-items: center ;
+    justify-content: center ;
+    position: absolute ;
+    bottom: 25px ;
     display: flex ;
-    width: 100%;
+    width: 100% ;
 }
 
 .flex-item{

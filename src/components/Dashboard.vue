@@ -3,27 +3,72 @@
         <Loading/>
         <Modal/>
         <div class="dashboard-container">
-        <Sidenav/>
-        <Main/> 
-        <Rightbar/>
+           <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>   
+           <Main @open-navbar="openNavbar"  :isAdminMobile="isAdminMobile"/> 
+             <router-view/>
+           <Rightbar/>
         </div>
     </div>
 </template>
 
 <script>
-    import Loading from '../components/Loading.vue'
-    import Modal from '../components/modal.vue'
+    // import Loading from '../components/Loading.vue'
+    // import Modal from '../components/modal.vue'
     import Main from '../components/main.vue'
     import Sidenav from '../components/sidenav.vue'
     import Rightbar from '../components/rightbar.vue'
     export default {
         components:{
-            Loading , Modal , Main , Sidenav , Rightbar
+            Main , Sidenav , Rightbar
+        },
+        data(){
+            return{
+                isAdminMobile:null,
+                adminScreenWidth:null
+            }
+        },
+        created(){
+            this.checkSreensize();
+            addEventListener("resize" , this.checkSreensize)
+        },
+        methods:{
+            checkSreensize(){
+                this.adminScreenWidth = window.innerWidth
+                if(this.adminScreenWidth <= 900 ){
+                    this.isAdminMobile = true;
+                    return;
+                }this.isAdminMobile = false
+            },
+            closeNavbar(){
+                const aside = document.querySelector("#aside")
+                aside.classList.remove('open')
+            },
+            openNavbar(){
+                const aside = document.querySelector("#aside")
+                aside.classList.add('open')
+            }
+        },
+        watch:{
+            $route(){
+                this.checkSreensize()
+            }
         }
     }
 </script>
 
 <style>
+.side-link-wrapper{
+    display: flex ;
+    justify-content: flex-end ;
+}
+
+.link-wrapper{
+    font-size: 14px;
+    color: rgb(36, 81, 185);
+    display: flex ;
+    padding: 4px;
+    cursor: pointer;
+}
 
 .one{
     width: 20px;
@@ -244,7 +289,48 @@
     display: flex ;
     flex-direction: column ;
     max-width: 240px;
+    transition: all 1s ease;
 }
+
+@media (max-width:900px) {
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'aside main';
+        height: 100vh;
+    }
+    .aside{
+       position: absolute ;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: -350px;
+    }
+    .aside.open{
+       position: fixed;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: 0px ;
+       z-index: 2222;
+    }
+}
+
+@media (max-width:650px){
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns:1fr ;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 'main';
+        height: 100vh;
+    }
+
+    .wrapper-items{
+        width: 90%;
+        margin: 20px auto; 
+    }
+}
+
 
 .left-tab{
     display: flex ;
@@ -403,21 +489,4 @@
     background: rgb(30, 93, 238) ;    
 }
 
-/*
-.flex{
-    display: flex ;
-}
-
-.p-relative{
-    position: relative;
-}
-
-.dashboard-container{
-    display: flex;
-    flex-direction: row;
-    -ms-flex: 1; /* IE 10 
-    flex: 1;
-}
-
-*/
 </style>

@@ -19,14 +19,30 @@
                   <router-link :to="{name:'Task'}">Dashboard</router-link>
               </li>
               <li v-show="showHamburger" class="hamburger-wrapper">
-                   <div class="link-wrapper">
+                   <div v-if="!showNavbar" @click="toggleNavbar" class="link-wrapper">
                         <font-awesome-icon :icon="['fas', 'bars']"/>
                    </div>
-                    <div class="link-wrapper">
+                    <div v-if="showNavbar" @click="toggleNavbar" class="link-wrapper">
                         <font-awesome-icon :icon="['fas', 'times']" />
                    </div>
               </li>
           </ul>
+          <transition name="mobile-nav">
+            <ul v-if="showNavbar" class="title-wrapper-mobile">
+              <li class="link-wrapper">
+                  <router-link  :to="{ name:'Home'}">Home</router-link>
+              </li>
+              <li class="link-wrapper">
+                  <router-link :to="{ name:'signUp'}">Sign up</router-link>
+              </li>
+              <li class="link-wrapper">
+                  <router-link :to="{ name:'signIn'}">Sign in</router-link>
+              </li>
+              <li class="link-wrapper">
+                  <router-link :to="{name:'Task'}">Dashboard</router-link>
+              </li> 
+          </ul>
+          </transition>
      </header>
 </template>
 
@@ -43,7 +59,7 @@
             }
         },
         created(){
-            addEventListener('resize' , this.checkMobileDevice )
+            addEventListener('resize' , this.checkMobileDevice)
             this.checkMobileDevice();
         },
         methods:{
@@ -51,10 +67,13 @@
               this.screenWidth = window.innerWidth
               if(this.screenWidth <= 768 ){
                 this.isMobile = true;
-                this.showHamburger = true
+                this.showHamburger = true;
                 return;
               }this.isMobile = false ;
              this.showHamburger = false
+            },
+            toggleNavbar(){
+                this.showNavbar = !this.showNavbar
             }
         },
         watch:{
@@ -104,6 +123,16 @@ ul.title-wrapper{
     list-style-type: none ;
 }
 
+ul.title-wrapper-mobile{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #eee;
+    z-index: 1111;
+    padding: 40px 20px;
+}
+
 ul li{
     padding: 5px 15px;
     font-size: 2rem;
@@ -121,5 +150,29 @@ ul li{
     top: 0 ;
     font-size: 24px ;
     cursor: pointer;
+    z-index: 2222 ;
 }
+
+
+
+        /*****
+        **Add transitionn to the mobile navbar
+        **
+        ***/
+        .mobile-nav-enter-active,
+        .mobile-nav-leave-active{
+            transition: all 1s ease;
+        }
+
+        .mobile-nav-enter{
+            transform: translateY(-250px);
+        }
+
+        .mobile-nav-enter-to{
+            transform: translateY(0);
+        }
+
+        .mobile-nav-leave-to{
+            transform: translateY(-250px);
+        }
 </style>

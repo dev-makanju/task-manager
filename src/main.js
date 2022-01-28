@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueTypedJs from 'vue-typed-js'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +20,10 @@ import {  faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import {  faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import {  faRadiationAlt } from '@fortawesome/free-solid-svg-icons'
 import {  faPaperclip } from '@fortawesome/free-solid-svg-icons'
+import {  faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import {  faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import scrollAnimation from './directives/observerApi'
 
 library.add(faUserSecret)
 library.add(faBars)
@@ -35,13 +39,17 @@ library.add(faSignOutAlt)
 library.add(faLayerGroup)
 library.add(faRadiationAlt)
 library.add(faPaperclip)
+library.add(faArrowRight)
+library.add(faArrowLeft)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
 Vue.config.productionTip = false
 
+Vue.directive('scrollanimation' , scrollAnimation)
 Vue.use(VueAxios, axios);
+Vue.use(VueTypedJs)
 
 new Vue({
   store,

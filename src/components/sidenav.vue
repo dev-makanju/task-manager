@@ -1,12 +1,15 @@
-<template>
-    <aside class="aside">
-            <div class="flex-item toggle-side">
+    <template>
+    <aside class="aside" id="aside">
+                <div class="flex-item toggle-side">
+                <div @click="$emit('close-navbar')" v-if="isAdminMobile" class="side-link-wrapper">
+                    <font-awesome-icon class="link-wrapper" :icon="['fas', 'arrow-left']"/>  
+                </div>
                 <div class="side-nav info">
                     <img class="profile-icon" src="../assets/userIcon.png">
                     <ul class="user-info">
                         <p>Miracool</p>
                         <span>Software developer</span>
-                    </ul>  
+                    </ul>
                 </div>
                 <ul class="side-nav">
                     <li>
@@ -59,6 +62,6 @@
 
 <script>
     export default {
-        
+        props:[ 'isAdminMobile' ]
     }
 </script>

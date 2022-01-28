@@ -7,7 +7,9 @@
         <div class="image-overlay"></div>
         <div class="image-overlay-wrapper">
              <div class="l-image-info ">
-                <h1>You can maximise your daily app project by setting up an account with us</h1>
+                <vue-typed-js :strings="['setting up an account with us', 'managing your todo list']">
+                    <h1>You can maximise your daily app project by <span class="typing"></span></h1>
+                </vue-typed-js>
              </div>
              <div class="l-image-info">
                 <router-link class="btn-btn-link"  :to="{name:'signUp'}">Get started</router-link>
@@ -21,7 +23,7 @@
         </div>
         <div class="landing-screen-item main">
             <div class="main-flex-items children">
-                <div class="children-items">
+                <div v-scrollanimation class="children-items">
                     <div class="picture-info">
                         <img src="../assets/Screenshot from 2022-01-21 20-18-48.png" alt="">
                     </div>
@@ -29,7 +31,7 @@
                         <h3>Open an account</h3>
                     </div>
                 </div>
-                <div class="children-items">
+                <div v-scrollanimation class="children-items">
                     <div class="picture-info">
                         <img src="../assets/Screenshot from 2022-01-21 20-18-40.png" alt="">
                     </div>
@@ -37,7 +39,7 @@
                         <h3>Sign in to your account</h3>
                     </div>
                 </div>
-                <div class="children-items">
+                <div v-scrollanimation class="children-items">
                     <div class="picture-info">
                         <img src="../assets/Screenshot from 2022-01-21 20-18-26.png" alt="">
                     </div>
@@ -45,7 +47,7 @@
                         <h3>dashboard</h3>
                     </div>
                 </div>
-                <div class="children-items">
+                <div v-scrollanimation class="children-items">
                     <div class="picture-info">
                         <img src="../assets/bgr.jpg" alt="">
                     </div>
@@ -75,6 +77,11 @@
 </script>
 
 <style>
+.typing{
+   text-decoration: underline ;
+   text-transform: lowercase;
+}
+
 .l-image-info{
     margin: 10px;
 }
@@ -192,6 +199,7 @@
     display: flex ;
     flex-direction: row;
     padding: 20px 30px;
+    overflow: hidden ; 
 }
 
 
@@ -228,6 +236,31 @@
 }
 
 
+@media (max-width: 450px) {
+        .children-items.before-enter:nth-child(odd){
+            transform: translateX(-240px);
+            transition: 1s ease-in-out all; 
+        }
+
+        .children-items.enter:nth-child(odd){
+            opacity: 1;
+            transform: translateX(0px);
+            transform: scale(1) rotateZ(0deg);
+        }
+
+        .children-items.before-enter:nth-child(even){
+            transform: translateX(240px);
+            transition: 1s ease-in-out all; 
+        }
+
+        .children-items.enter:nth-child(even){
+            opacity: 1;
+            transform: scale(1) rotateZ(0deg);
+        }
+}
+
+
+
 .children-items img{
     border-radius: 7px ;
     width: 250px ;
@@ -243,4 +276,6 @@
        align-items: center;
     }   
 }
+
+
 </style>

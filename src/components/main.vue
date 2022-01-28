@@ -1,20 +1,7 @@
 <template>
     <main class="main">
             <div class="main-overview">
-                <div class="middle-design-wrapper task-header">
-                    <div class="item-wrapper">
-                         <p><span style="font-size: 17px;">15</span> October , 2020</p>
-                    </div>
-                    <div class="item-wrapper">
-                            <p class="progress-bar">1 of 5 completed</p> 
-                        <div class="progress-wrapper">
-                            <div class="progress-bar p-tag">
-                               <div class="background"></div>
-                               <div class="p-overlay"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <adminHeader @open-navbar="$emit('open-navbar')" :isAdminMobile="isAdminMobile"/>
                 <!---middle card design--> 
                     
                     <div class="middle-design-wrapper cards-design">
@@ -30,9 +17,8 @@
                         </div>
                         <div class="task-wrapp">
                           <h2></h2>
-                           <div class="ctext-info">
-                                
-                           </div>    
+                            <div class="ctext-info">
+                            </div>    
                        </div>
                     </div>
   
@@ -85,11 +71,78 @@
 </template>
 
 <script>
+    import adminHeader from '../components/admin-header'
+
     export default {
-        
+        name:"adminMain",
+        props:['isAdminMobile'],
+        components:{
+           adminHeader,
+        },
+        methods:{
+
+        }
     }
 </script>
 
 <style>
 
+.dashboard-container{
+    display: grid ;
+    grid-template-columns: 240px 1fr 350px;
+    grid-template-areas: 'aside main';
+    height: 100vh;
+}
+
+.aside{
+    background: whitesmoke;
+    box-shadow: 0px 2px 5px 3px rgba(13, 6, 214, 0.304);
+    z-index: 111;
+    grid-area: 'aside' ;
+    display: flex ;
+    flex-direction: column ;
+    max-width: 240px;
+    transition: all 1s ease;
+}
+
+@media (max-width:900px) {
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'aside main';
+        height: 100vh;
+    }
+    .aside{
+       position: absolute ;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: -350px;
+    }
+    .aside.open{
+       position: fixed;
+       top: 0px;
+       bottom: 0px;
+       width: 100%;
+       left: 0px ;
+       z-index: 2222;
+    }
+}
+
+@media (max-width:650px){
+    .dashboard-container{
+        display: grid ;
+        grid-template-columns:1fr ;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 'main';
+        height: 100vh;
+    }
+
+    .wrapper-items{
+        width: 90%;
+        margin: 20px auto; 
+    }
+}
+
 </style>
+
