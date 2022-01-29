@@ -15,27 +15,42 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta:{
+        title:'Home'
+    }
   },
   {
     path: '/register',
     name: 'signUp',
-    component: signUp
+    component: signUp,
+    meta:{
+        title:'Sign up'
+    }
   },
   {
     path: '/login',
     name: 'signIn',
-    component:Register
+    component:Register,
+    meta:{
+        title:"Sign in"
+    }
   },
   {
     path: '/dashboard',
     name: 'Task',
     component: Dashboard ,
+    meta:{
+        title:'Tasks'
+    }
   },
   {
     path: '/dashboard/create-task',
     name: 'AddTask',
-    component:CreateTask
+    component:CreateTask,
+    meta:{
+      title:'Create-task'
+    }
   },
   {
     path: '/dashboard/tasks',
@@ -45,7 +60,10 @@ const routes = [
   {
     path: '/:catchAll(.*)*',
     name: 'error',
-    component: Notfound
+    component: Notfound,
+    meta:{
+        title:'404-notfound'
+    }
   },
 ]
 
@@ -54,5 +72,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to , from , next) => {
+  let titleDocument = `Task-manager - ${ to.meta.title }` ;
+  document.title = titleDocument
+  next();
+});
 
 export default router
