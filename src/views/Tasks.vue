@@ -7,7 +7,7 @@
         <main class="main">
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
-                  <h2>All Created Task</h2> 
+                  <h2 class="title">All Created Task</h2> 
                 <div class="scroll-body">
                 <table width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
@@ -110,6 +110,10 @@
 </script>
 
 <style scoped>
+
+.title{
+    color: rgb(2, 40, 129);
+}
 
 /********
 ***Add a table cell and padding on it
