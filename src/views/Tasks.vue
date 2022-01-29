@@ -9,7 +9,7 @@
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
                   <h2>All Created Task</h2> 
                 <div class="scroll-body">
-                      <table>
+                <table width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
                         <th>s/n</th>
                         <th>title</th>
@@ -45,42 +45,6 @@
                              </tr>
                              <tr>
                                  <td>3</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
-                                     edi
-                                 </td>
-                                 <td>
-                                     del
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>4</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
-                                     edi
-                                 </td>
-                                 <td>
-                                     del
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>5</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
-                                     edi
-                                 </td>
-                                 <td>
-                                     del
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>6</td>
                                  <td>build fadaka</td>
                                  <td>20th , Aug 2022 </td>
                                  <td>pending</td>
@@ -150,12 +114,17 @@
 /********
 ***Add a table cell and padding on it
 ********/
+.main{
+    background: #fff;
+    grid-area: 'main';
+}
+
 
 .tasks-wrapper{
     display: flex ;
     justify-content: center ;
     flex-direction: column ;
-    width: 80%;
+    width: 80% ;
     margin: 0px auto;
 }
 
@@ -168,7 +137,8 @@ table{
     border: 1px solid rgb(189, 201, 230);
     border-radius: 7px;
     border-collapse: collapse;
-    overflow-x: scroll;
+    width: 100%;
+    overflow: auto;
 }
 
 th{
@@ -234,37 +204,37 @@ tr:nth-child(odd){
 @media (max-width:650px){
     .dashboard-container{
         display: grid ;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr ;
         grid-template-areas: 'aside main';
         height: 100vh;
     }
 
-    .scroll-body{ 
-       overflow: scroll;
+     .tasks-wrapper{
+        width: 100% ;
+
     }
 
-    .tasks-wrapper{
-        width: 95%;
+    .scroll-body{ 
+       overflow: scroll ;
+       width: 100vw ;
     }
 }
 
 @media (max-width:490px){
-    .scroll-body{
-       overflow: scroll;
-    }
-
-    .task-wrapper{
-        width: 95% ;
+    
+    .scroll-body{ 
+       overflow: scroll ;
     }
 }
 
 
 @media (max-width:300px){
-    .scroll-body{
-       overflow: scroll;
+    
+    .scroll-body{ 
+       overflow: scroll ;
     }
 
-    .task-wrapper{
+    .tasks-wrapper{
         width: 95% ;
     }
 }

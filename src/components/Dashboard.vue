@@ -1,11 +1,10 @@
 <template>
-    <div style="position: relative;" class="main">
+    <div class="main-div">
         <Loading/>
         <Modal/>
         <div class="dashboard-container">
            <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>   
            <Main @open-navbar="openNavbar"  :isAdminMobile="isAdminMobile"/> 
-             <router-view/>
            <Rightbar/>
         </div>
     </div>
@@ -57,6 +56,10 @@
 </script>
 
 <style>
+.main-div{
+    position:relative;
+    height: 100%; 
+}
 
 .one{
     width: 20px;
@@ -248,7 +251,7 @@
        bottom: 0px;
        width: 100%;
        left: 0px ;
-       z-index: 2222;
+       z-index: 222;
     }
 }
 

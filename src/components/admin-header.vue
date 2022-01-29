@@ -58,6 +58,13 @@
 .p-tag{
     position: relative ;
 }
+.link-wrapper{
+    font-size: 14px;
+    color: rgb(36, 81, 185);
+    display: flex ;
+    padding: 4px;
+    cursor: pointer;
+}
 
 .background{
     position: relative;
