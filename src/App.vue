@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <div v-if="!showNavbar" id="nav">
-        <Navigation/>
-    </div>
-      <router-view/>
-    <div v-if="!showNavbar" id="nav">
-        <Footer/>
+    <div id="nav" v-cloak>
+        <Navigation v-cloak v-if="!showNavbar"/>
+            <router-view/>
+        <Footer v-cloak v-if="!showNavbar"/>
     </div>
   </div>
 </template>
@@ -14,10 +12,12 @@
 import Navigation from './components/Navigation.vue'
 import Footer from './components/Footer.vue'
 
+
 export default {
     name:"rootApp",
     components:{
-        Navigation , Footer
+        Navigation , 
+        Footer,
     },
     data(){
         return{
@@ -29,7 +29,13 @@ export default {
     },
     methods:{
        checkRoute(){
-          if(this.$route.name === "signIn" || this.$route.name === "signUp" || this.$route.name === "Task" || this.$route.name === "AddTask" || this.$route.name === "allTask"){
+          if(this.$route.name === "signIn" || 
+             this.$route.name === "signUp" ||
+             this.$route.name === "Task" || 
+             this.$route.name === "AddTask" || 
+             this.$route.name === "allTask" ||
+             this.$route.name === "error"){
+
               this.showNavbar = true;
               return;
            }this.showNavbar = false;
@@ -111,7 +117,7 @@ body{
   color: #777;
   min-height: 100vh;
   display: -webkit-box;
-  display: -ms-flexbox;
+  display: -ms-flexbox !important;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -247,6 +253,10 @@ body{
 .error{
     color: #e74e3c ;
     font-size:12px;
+}
+
+[v-cloak]{
+   display: none;
 }
 
 </style>

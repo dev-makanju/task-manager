@@ -3,6 +3,11 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import signUp from "../views/signUp.vue"
 import Notfound from "../views/error.vue"
+import Register from "../views/signIn.vue"
+import Dashboard from "../views/dashboard.vue"
+import CreateTask from "../views/create-task.vue"
+import Task from "../views/Tasks.vue"
+
 
 Vue.use(VueRouter)
 
@@ -20,25 +25,25 @@ const routes = [
   {
     path: '/login',
     name: 'signIn',
-    component: () => import('../views/signIn.vue')
+    component:Register
   },
   {
     path: '/dashboard',
     name: 'Task',
-    component: () => import('../views/dashboard.vue')
+    component: Dashboard ,
   },
   {
     path: '/dashboard/create-task',
     name: 'AddTask',
-    component: () => import('../views/create-task.vue')
+    component:CreateTask
   },
   {
     path: '/dashboard/tasks',
     name: 'allTask',
-    component: () => import('../views/Tasks.vue')
+    component: Task
   },
   {
-    path: '/error',
+    path: '/:catchAll(.*)*',
     name: 'error',
     component: Notfound
   },
