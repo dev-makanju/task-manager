@@ -7,8 +7,9 @@
         <main class="main">
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
-                  <h2>All Created Task</h2>
-                <table>
+                  <h2>All Created Task</h2> 
+                <div class="scroll-body">
+                      <table>
                     <thead>
                         <th>s/n</th>
                         <th>title</th>
@@ -92,6 +93,7 @@
                              </tr>
                       </tbody>
                   </table>
+                </div>  
             </div>
            </main>
         </div>
@@ -153,8 +155,13 @@
     display: flex ;
     justify-content: center ;
     flex-direction: column ;
-    width: 80% ;
+    width: 80%;
     margin: 0px auto;
+}
+
+.scroll-body{
+    display: flex ;
+    flex-direction: column ;
 }
 
 table{
@@ -163,13 +170,6 @@ table{
     border-collapse: collapse;
     overflow-x: scroll;
 }
-
-@media (max-width: 600px){
-    table{
-       overflow-x: scroll ;
-    }
-}
-
 
 th{
    border: 1px solid rgb(189, 201, 230);
@@ -239,21 +239,35 @@ tr:nth-child(odd){
         height: 100vh;
     }
 
-    .wrapper-items{
-        width: 90%;
-        margin: 20px auto; 
+    .scroll-body{ 
+       overflow: scroll;
+    }
+
+    .tasks-wrapper{
+        width: 95%;
     }
 }
 
-.task-wrapper{
-    display: flex ;
-    flex-direction: column ;
-    align-items: center ;
-    justify-content: center ;
-    position: absolute ;
-    bottom: 25px ;
-    display: flex ;
-    width: 100% ;
+@media (max-width:490px){
+    .scroll-body{
+       overflow: scroll;
+    }
+
+    .task-wrapper{
+        width: 95% ;
+    }
 }
+
+
+@media (max-width:300px){
+    .scroll-body{
+       overflow: scroll;
+    }
+
+    .task-wrapper{
+        width: 95% ;
+    }
+}
+
 
 </style>

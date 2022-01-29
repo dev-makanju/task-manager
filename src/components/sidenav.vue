@@ -93,7 +93,7 @@
        bottom: 0px;
        width: 100%;
        left: 0px ;
-       z-index: 2222;
+       z-index: 222;
     }
 }
 
