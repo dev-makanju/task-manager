@@ -1,5 +1,5 @@
 <template>
-     <header>
+    <header>
           <div class="title-wrapper">
               <router-link to="/">
                   <h1>Task <span class="small-font">Timer</span></h1>
@@ -10,13 +10,13 @@
                   <router-link  :to="{ name:'Home'}">Home</router-link>
               </li>
               <li v-if="!isMobile" class="link-wrapper">
-                  <router-link :to="{ name:'signUp'}">Sign up</router-link>
+                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signUp'}">Sign up</router-link>
               </li>
               <li v-if="!isMobile" class="link-wrapper">
-                  <router-link :to="{ name:'signIn'}">Sign in</router-link>
+                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signIn'}">Sign in</router-link>
               </li>
               <li v-if="!isMobile" class="link-wrapper">
-                  <router-link :to="{name:'Task'}">Dashboard</router-link>
+                  <router-link v-if="isLoggedUserIn" :to="{name:'Task'}">Dashboard</router-link>
               </li>
               <li v-show="showHamburger" class="hamburger-wrapper">
                    <div v-if="!showNavbar" @click="toggleNavbar" class="link-wrapper">
@@ -33,13 +33,13 @@
                   <router-link  :to="{ name:'Home'}">Home</router-link>
               </li>
               <li class="link-wrapper">
-                  <router-link :to="{ name:'signUp'}">Sign up</router-link>
+                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signUp'}">Sign up</router-link>
               </li>
               <li class="link-wrapper">
-                  <router-link :to="{ name:'signIn'}">Sign in</router-link>
+                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signIn'}">Sign in</router-link>
               </li>
               <li class="link-wrapper">
-                  <router-link :to="{name:'Task'}">Dashboard</router-link>
+                  <router-link v-if="isLoggedUserIn" :to="{name:'Task'}">Dashboard</router-link>
               </li> 
           </ul>
           </transition>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+    
     export default {
         name:"",
         props:[],
@@ -69,15 +71,15 @@
                 this.isMobile = true;
                 this.showHamburger = true;
                 return;
-              }this.isMobile = false ;
+              }this.isMobile = false;
              this.showHamburger = false
             },
             toggleNavbar(){
                 this.showNavbar = !this.showNavbar
             }
         },
-        watch:{
-
+        computed:{
+            ...mapGetters(['isLoggedUserIn'])
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="main-div">
-        <Loading/>
-        <Modal/>
+        <Loading v-if="loading"/>
+        <Modal v-if="isActive"/>
         <div class="dashboard-container">
            <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>   
            <Main @open-navbar="openNavbar"  :isAdminMobile="isAdminMobile"/> 
@@ -11,19 +11,26 @@
 </template>
 
 <script>
-    // import Loading from '../components/Loading.vue'
-    // import Modal from '../components/modal.vue'
-    import Main from '../components/main.vue'
-    import Sidenav from '../components/sidenav.vue'
-    import Rightbar from '../components/rightbar.vue'
+    import Loading from '../components/Loading.vue'
+    import Modal from '../components/Modal.vue'
+    import Main from './main.vue'
+    import Sidenav from './sidenav.vue'
+    import Rightbar from './rightbar.vue'
     export default {
+        name:"Dashboard",
         components:{
-            Main , Sidenav , Rightbar
+            Main , 
+            Sidenav , 
+            Rightbar,
+            Loading ,
+            Modal
         },
         data(){
             return{
                 isAdminMobile:null,
-                adminScreenWidth:null
+                adminScreenWidth:null,
+                loading:null,
+                isActive: null
             }
         },
         created(){

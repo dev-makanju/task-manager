@@ -16,6 +16,18 @@
              </div>
         </div>
     </div>
+    <div class="banner">
+        <div class="banner__overlay"></div>
+         <div class="banner_overlay_item"></div>
+        <div class="banner__overlay">
+           <div class="banner__child">
+
+           </div>
+           <div class="banner__child">
+
+           </div>
+        </div>
+    </div>
     <!----landing page--->
     <div class="landing-screen main-screen">
         <div class="landing-screen-item header">
@@ -29,6 +41,7 @@
                     </div>
                     <div class="picture-info">
                         <h3>Open an account</h3>
+                        <p style="color: #000;">A perfect image of our registration page</p>
                     </div>
                 </div>
                 <div v-scrollanimation class="children-items">
@@ -37,6 +50,7 @@
                     </div>
                     <div class="picture-info">
                         <h3>Sign in to your account</h3>
+                        <p style="color: #000;">Go to this page for authentication.</p>
                     </div>
                 </div>
                 <div v-scrollanimation class="children-items">
@@ -58,8 +72,8 @@
              </div>
              <div class="main-flex-items">
                   <div class="about-wrapper">
-                      <h1>About us</h1>
-                      <p class="about-info">
+                      <h1 style="font-weight: bold ;font-size: 30px;">About us</h1>
+                      <p v-scrollanimation class="about-info">
                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                       </p>
                   </div>
@@ -77,6 +91,33 @@
 </script>
 
 <style>
+/***********overlay**********/
+.banner{
+    position: relative;
+    height: 500px ;
+}
+
+.banner__overlay{
+    background: rgb(30, 93, 238) ;
+    height: 500px ;
+    position: absolute ;
+    width: 100% ;
+    top: 0;
+}
+
+.banner_overlay_item{
+    width: 100%;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(78, 71, 71, 0.468);
+    top: 0;
+    position: absolute ;
+}
+
+
+/*******end overlay*********/
+
+
 .typing{
    text-decoration: underline ;
    text-transform: lowercase;
@@ -120,13 +161,24 @@
 .about-info{
     color:  rgb(2, 40, 129);
     font-family: 'Merriweather', serif;
-
     font-weight: 600;
     text-transform: lowercase;
     font-size: 16px;
     letter-spacing: 1px;
     word-spacing: 2px;
 }
+
+.about-info.before-enter{
+    transform: translateY(50px);
+    transition: 1s ease-in-out all; 
+    opacity:.1;
+} 
+
+.about-info.enter{
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s ease-in-out all; 
+} 
 
 .about-info-header{
     color:  rgb(2, 40, 129);
@@ -160,9 +212,7 @@
     justify-content: center ;
     align-items: center ;
     flex-direction: column ;
-
 }
-
 
 .landing-screen img{
     object-fit: cover;
@@ -179,11 +229,19 @@
     display: flex ;
     justify-content: center;
     align-items: center;
+    flex-direction: column ;
 }
 
 .picture-info h3{
    text-align: center;
    color: rgb(36, 81, 185);
+}
+
+.picture-info p{
+   text-align: center;
+   color: rgb(36, 81, 185);
+   font-size: 9px;
+   text-transform: lowercase;   
 }
 
 .landing-screen.main-screen{
@@ -201,8 +259,6 @@
     padding: 20px 30px;
     overflow: hidden ; 
 }
-
-
 
 .main-flex-items{
     width: 100%;

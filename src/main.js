@@ -5,6 +5,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueTypedJs from 'vue-typed-js'
 import router from './router'
+import vuelidate from 'vuelidate'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -22,6 +23,10 @@ import {  faRadiationAlt } from '@fortawesome/free-solid-svg-icons'
 import {  faPaperclip } from '@fortawesome/free-solid-svg-icons'
 import {  faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import {  faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import {  faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import {  faEye } from '@fortawesome/free-solid-svg-icons'
+import {  faEdit } from '@fortawesome/free-solid-svg-icons'
+import {  faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import scrollAnimation from './directives/observerApi'
 
@@ -41,6 +46,10 @@ library.add(faRadiationAlt)
 library.add(faPaperclip)
 library.add(faArrowRight)
 library.add(faArrowLeft)
+library.add(faEyeSlash)
+library.add(faEye)
+library.add(faEdit)
+library.add(faTrash)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -49,6 +58,7 @@ Vue.config.productionTip = false
 
 Vue.directive('scrollanimation' , scrollAnimation)
 Vue.use(VueAxios, axios);
+Vue.use(vuelidate);
 Vue.use(VueTypedJs)
 
 new Vue({
@@ -58,13 +68,13 @@ new Vue({
 }).$mount('#app')
 
 //setting up vue default http modules for api
-Vue.config.globalProperties.$http =  axios;
+Vue.prototype.http =  axios;
 
 //load the token from localstorage
-const token = localStorage.getItem("token"); 
+const token = localStorage.getItem("token");
 
 //If there is any token we append it to the http default axios authorisation headers 
 if(token){
-    Vue.config.globalProperties.$http.defaults.headers.common['Authorization'] = token;
+    Vue.prototype.http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 

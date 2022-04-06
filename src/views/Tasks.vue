@@ -25,10 +25,10 @@
                             <td>20th , Aug 2022 </td>
                             <td>pending</td>
                                 <td>
-                                     edit
+                                     <font-awesome-icon style="cursor: pointer"  :icon="['fas', 'edit']"/>
                                 </td>
                                 <td>
-                                     edit
+                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
                                 </td>
                              </tr>
                              <tr>
@@ -37,10 +37,10 @@
                                  <td>20th , Aug 2022 </td>
                                  <td>pending</td>
                                  <td>
-                                     edi
+                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
                                  </td>
                                  <td>
-                                     del
+                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
                                  </td>
                              </tr>
                              <tr>
@@ -49,10 +49,10 @@
                                  <td>20th , Aug 2022 </td>
                                  <td>pending</td>
                                  <td>
-                                     edi
+                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
                                  </td>
                                  <td>
-                                     del
+                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
                                  </td>
                              </tr>
                       </tbody>
@@ -156,6 +156,7 @@ td{
    border: 1px solid rgb(189, 201, 230);
    padding: 7px 20px;
    font-size: 14px;
+   text-align: center;
 }
 
 tr:nth-child(odd){

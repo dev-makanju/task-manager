@@ -11,6 +11,7 @@
 
 import Navigation from './components/Navigation.vue'
 import Footer from './components/Footer.vue'
+import { mapActions } from 'vuex'
 
 
 export default {
@@ -26,8 +27,16 @@ export default {
     },
     created(){
        this.checkRoute();
+       const token = localStorage.getItem('token')
+       if(token !== null){
+           this.checkUser();
+       }
     },
     methods:{
+       ...mapActions(['getUser']),
+       checkUser(){
+           this.$store.dispatch('getUser')
+       },
        checkRoute(){
           if(this.$route.name === "signIn" || 
              this.$route.name === "signUp" ||
@@ -219,13 +228,6 @@ body{
     display: -webkit-box;
 }
 
-.form-control-inputs input{
-    width: 100% ;
-    box-sizing: border-box;
-    padding: 8px ;
-    outline: none ;
-}
-
 .btn.btn-auth{
     margin-top: 1em ;
     background:  rgb(33, 64, 138) ;
@@ -234,6 +236,7 @@ body{
     color: #eee;
     font-size: 17px;
     cursor: pointer ;
+    outline: none ;
 }
 
 .det-wraps{
@@ -253,6 +256,36 @@ body{
 .error{
     color: #e74e3c ;
     font-size:12px;
+}
+
+.is-invalid{
+    border: 1px solid #e74e3c !important;
+}
+
+.error__wrapper{
+    border: 1px solid red ;
+    background: #f3d8d5 ;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.error__wrapper p{
+    color: red ;
+    font-family: 'raleways' , sans-serif ;
+}
+
+.is-valid{
+    border: 1px solid green !important;
+}
+
+
+.form-control-inputs input{
+    width: 100% ;
+    box-sizing: border-box;
+    padding: 9px ;
+    outline: none ;
+    border-radius: 4px;
+    border: 1px solid #000;
 }
 
 [v-cloak]{

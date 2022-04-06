@@ -7,7 +7,7 @@
             <div class="side-nav info">
                     <img class="profile-icon" src="../assets/userIcon.png">
                     <ul class="user-info">
-                        <p>Miracool</p>
+                        <p>{{ user.name }}</p>
                         <span>Software developer</span>
                     </ul>
             </div>
@@ -54,15 +54,24 @@
                 </ul>
             </div>
 
-            <div class="aside-text-overlay">
-                  <font-awesome-icon :icon="['fas' , 'sign-out-alt']"/> &nbsp;&nbsp; logout
+            <div @click="logUserOut" class="aside-text-overlay">
+                  <font-awesome-icon  :icon="['fas' , 'sign-out-alt']"/> &nbsp;&nbsp; logout
             </div>
         </aside>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
-        props:[ 'isAdminMobile' ]
+        props:[ 'isAdminMobile' ],
+        methods:{
+            logUserOut(){
+                this.$store.dispatch('logout')   
+            }
+        },
+        computed:{
+            ...mapGetters(['user']),
+        }
     }
 </script>
 
