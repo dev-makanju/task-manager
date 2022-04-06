@@ -16,17 +16,14 @@
              </div>
         </div>
     </div>
+
     <div class="banner">
-        <div class="banner__overlay"></div>
-         <div class="banner_overlay_item"></div>
-        <div class="banner__overlay">
            <div class="banner__child">
-
+                
            </div>
            <div class="banner__child">
 
            </div>
-        </div>
     </div>
     <!----landing page--->
     <div class="landing-screen main-screen">
@@ -41,7 +38,6 @@
                     </div>
                     <div class="picture-info">
                         <h3>Open an account</h3>
-                        <p style="color: #000;">A perfect image of our registration page</p>
                     </div>
                 </div>
                 <div v-scrollanimation class="children-items">
@@ -50,7 +46,6 @@
                     </div>
                     <div class="picture-info">
                         <h3>Sign in to your account</h3>
-                        <p style="color: #000;">Go to this page for authentication.</p>
                     </div>
                 </div>
                 <div v-scrollanimation class="children-items">
@@ -72,7 +67,7 @@
              </div>
              <div class="main-flex-items">
                   <div class="about-wrapper">
-                      <h1 style="font-weight: bold ;font-size: 30px;">About us</h1>
+                      <h1 style="font-weight: 400 ;font-size: 30px;">About us</h1>
                       <p v-scrollanimation class="about-info">
                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                       </p>
@@ -95,31 +90,13 @@
 .banner{
     position: relative;
     height: 500px ;
+    background: #2451B9;
 }
-
-.banner__overlay{
-    background: rgb(30, 93, 238) ;
-    height: 500px ;
-    position: absolute ;
-    width: 100% ;
-    top: 0;
-}
-
-.banner_overlay_item{
-    width: 100%;
-    height: 500px;
-    border-radius: 50%;
-    background: rgba(78, 71, 71, 0.468);
-    top: 0;
-    position: absolute ;
-}
-
 
 /*******end overlay*********/
 
 
 .typing{
-   text-decoration: underline ;
    text-transform: lowercase;
 }
 
@@ -129,11 +106,13 @@
 
 .l-image-info h1 {
     font-family: 'Roboto', sans-serif;
+    word-spacing: 2px;
+
 }
 
 .btn-btn-link{
     padding: 10px 20px;
-    border-radius: 17px ;
+    border-radius: 5px ;
     color: #fff;
     font-size: 17px;
     background: rgb(36, 81, 185);
@@ -156,6 +135,7 @@
 .about-wrapper h1{
     color:  rgb(2, 40, 129);
     font-family: 'Montserrat', sans-serif ;
+    font-weight: 300;
 }
 
 .about-info{
@@ -178,14 +158,16 @@
     opacity: 1;
     transform: translateY(0px);
     transition: 1s ease-in-out all; 
+    word-spacing: 2px;
+    font-weight: 350;
 } 
 
 .about-info-header{
     color:  rgb(2, 40, 129);
     font-family: 'Merriweather', serif;
-
     text-transform: lowercase;
-    font-size: 24px;
+    font-size: 30px;
+    font-weight: 400;
 }
 
 .landing-page-image.main-screen-wrapper{
@@ -250,7 +232,8 @@
 }
 
 .landing-screen-item.header{
-    height: 200px;
+    height: 100px;
+    padding: 5px 5px;
 }
 
 .landing-screen-item.main{
@@ -282,6 +265,10 @@
 
 .main-flex-items .children-items:hover{
     opacity: .7;
+    background: blue;
+    border-radius: 2px ;
+    transform: scale(.1s) ;
+    transition: .2s ease;
 }
 
 .children-items{
@@ -318,10 +305,10 @@
 
 
 .children-items img{
-    border-radius: 7px ;
+    border-radius: 2px ;
     width: 250px ;
     height: 250px ;
-    box-shadow: 0px 2px 5px rgba(0 , 0 , 0 , .3);
+    box-shadow: 0px 5px 55px 5px rgba(0 , 0 , 0 , .1);
 }
 
 

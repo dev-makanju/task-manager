@@ -98,6 +98,7 @@ export default {
                     this.showError = true;
                     this.errorMessage = res.data.message;
                 }).catch(err => {
+                    this.loading = false,
                     console.log(err);
                 });
             }

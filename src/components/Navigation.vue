@@ -98,11 +98,9 @@ header{
 }
 
 @media only screen and (max-width: 768px) {
-    
-header{
-    padding: .5rem;
-}
-
+   header{
+       padding: .5rem;
+   }
 }
 
 .title-wrapper h1{
