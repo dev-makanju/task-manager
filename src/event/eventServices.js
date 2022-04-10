@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const token = localStorage.getItem("token")
 const apiClient = axios.create({
-    //baseURL:'https://mikepostapp.herokuapp.com/',//
+    baseURL:'https://mikepostapp.herokuapp.com/',
     headers:{
         'Access-Control-Allow-Origin':'*',
         'Authorization': 'Bearer '+token
