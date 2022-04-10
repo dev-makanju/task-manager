@@ -16,13 +16,21 @@
              </div>
         </div>
     </div>
-
     <div class="banner">
            <div class="banner__child">
-                
+                <div>
+                    <h1>Simple</h1>
+                    <p>but</p>
+                    <h1>Elegant</h1>
+                </div>
+                <div class="focus">
+                    <p>Focus on the feature and functionality, we are growing</p>
+                </div>
            </div>
            <div class="banner__child">
-
+                <div class="vedio__preview">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tCRbVEGHZlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
            </div>
     </div>
     <!----landing page--->
@@ -69,7 +77,7 @@
                   <div class="about-wrapper">
                       <h1 style="font-weight: 400 ;font-size: 30px;">About us</h1>
                       <p v-scrollanimation class="about-info">
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          Hi there, Thanks for visiting!. Task Timer is a schedule management system that helps you track your daily progress, manage your work schedules and also gives you the boost to achieve productivity. This project is one of my few projects and it has a whole lot of features to make thing simple for you, and also working efficiently for task scheduling. You might be wondering How do i start?, here is it <router-link style="font-weight:bold" :to="{name:'signUp'}">register</router-link>  as a member , or  <router-link style="font-weight:bold" :to="{name:'signUp'}">login</router-link> to your account. After then, you have access to your personalised dashboard. follow the on screen guilde and you will be fine. Thanks for choosing task timer as your new tool!.   
                       </p>
                   </div>
              </div>
@@ -87,11 +95,38 @@
 
 <style>
 /***********overlay**********/
+.vedio__preview{
+    border-radius: 5px ;
+    box-shadow: 0px 2px 55px 3px rgb(2 , 40 , 129);
+    overflow: hidden ;
+    max-width: 100%;
+    height: auto ;
+    width: auto\9; /* ie8 */
+}
+
 .banner{
     position: relative;
     height: 500px ;
     background: #2451B9;
+    display: flex ;
+    flex-direction: row;
 }
+
+@media (max-width: 700px) {
+    .banner{
+        display: flex ;
+        flex-direction: column ;
+    }
+}
+
+.banner__child{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 
 /*******end overlay*********/
 
@@ -105,8 +140,10 @@
 }
 
 .l-image-info h1 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Rubik Moonrocks', cursive;
     word-spacing: 2px;
+    font-size: 30px;
+    font-weight: 300;
 
 }
 
@@ -168,6 +205,12 @@
     text-transform: lowercase;
     font-size: 30px;
     font-weight: 400;
+}
+
+@media (max-width: 620px ) {
+    .about-info-header{
+        font-size: 20px;  
+    }
 }
 
 .landing-page-image.main-screen-wrapper{
@@ -242,6 +285,13 @@
     padding: 20px 30px;
     overflow: hidden ; 
 }
+
+@media (max-width:450px) {
+    .landing-screen-item.main{
+        padding: 10px 10px;
+    } 
+}
+
 
 .main-flex-items{
     width: 100%;

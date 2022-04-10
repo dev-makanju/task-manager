@@ -9,12 +9,16 @@
               <li v-if="!isMobile" class="link-wrapper">
                   <router-link  :to="{ name:'Home'}">Home</router-link>
               </li>
-              <li v-if="!isMobile" class="link-wrapper">
-                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signUp'}">Sign up</router-link>
-              </li>
-              <li v-if="!isMobile" class="link-wrapper">
-                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signIn'}">Sign in</router-link>
-              </li>
+              <span v-if="!isLoggedUserIn">
+                   <li v-if="!isMobile" class="link-wrapper">
+                      <router-link :to="{ name:'signUp'}">Sign up</router-link>
+                   </li>
+              </span>
+              <span v-if="!isLoggedUserIn">
+                  <li v-if="!isMobile" class="link-wrapper">
+                     <router-link :to="{ name:'signIn'}">Sign in</router-link>
+                 </li>
+              </span>
               <li v-if="!isMobile" class="link-wrapper">
                   <router-link v-if="isLoggedUserIn" :to="{name:'Task'}">Dashboard</router-link>
               </li>
@@ -32,11 +36,11 @@
               <li class="link-wrapper">
                   <router-link  :to="{ name:'Home'}">Home</router-link>
               </li>
-              <li class="link-wrapper">
-                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signUp'}">Sign up</router-link>
+              <li v-if="!isLoggedUserIn" class="link-wrapper">
+                  <router-link :to="{ name:'signUp'}">Sign up</router-link>
               </li>
-              <li class="link-wrapper">
-                  <router-link v-if="!isLoggedUserIn" :to="{ name:'signIn'}">Sign in</router-link>
+              <li v-if="!isLoggedUserIn" class="link-wrapper">
+                  <router-link :to="{ name:'signIn'}">Sign in</router-link>
               </li>
               <li class="link-wrapper">
                   <router-link v-if="isLoggedUserIn" :to="{name:'Task'}">Dashboard</router-link>

@@ -1,9 +1,11 @@
 import axios from 'axios'
 
+const token = localStorage.getItem("token")
 const apiClient = axios.create({
     //baseURL:'https://mikepostapp.herokuapp.com/',//
     headers:{
         'Access-Control-Allow-Origin':'*',
+        'Authorization': 'Bearer '+token
     }
 })
 
@@ -12,7 +14,7 @@ export default{
         return apiClient.post('auth/login' , user );
     },
     getUserInfo(){
-        return apiClient.get('auth/me')
+        return apiClient.get('auth/me');
     },
     registerEvent(user){
         return apiClient.post('auth/signup' , user );

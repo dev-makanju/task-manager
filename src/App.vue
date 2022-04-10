@@ -70,7 +70,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital@1&family=Montserrat:ital,wght@0,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&family=Mochiy+Pop+P+One&family=Rubik+Moonrocks&display=swap');
 
 
 *{
@@ -181,6 +181,12 @@ body{
 .form-control{
     width: 40%;
     margin: 0px auto ;
+}
+
+@media only screen and (max-width: 800px) {
+    .form-control{
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 450px) {

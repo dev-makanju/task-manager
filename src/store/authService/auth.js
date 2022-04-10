@@ -7,7 +7,8 @@ import router from '../../router'
 const state = {
     token: localStorage.getItem("token") || "",
     user: {},
-    status:""
+    status:"",
+    load:null,
 }
 
 const getters = {
@@ -34,7 +35,14 @@ const mutations = {
     user_loggedout(){
         state.user = {} 
         state.status =''
+    },
+    auth_true(){
+        state.load = true
+    },
+    auth_false(){
+        state.load = false
     }
+
 }
 
 const actions = {
@@ -78,13 +86,20 @@ const actions = {
         location.reload();
     },
 
-    async getUser(){
+    async getUser({commit}){
         try{
+          commit('auth_true');
           const response = await eventServices.getUserInfo();
-          console.log(response)
-        //   if(response.data.success){
-        //     commit('UPDATE_TASK' )
-        //   }
+          if(response.status){   
+            const token = response.data.token;
+            const user = response.data.user;
+            const data = {
+                token: token,
+                user: user,
+            }  
+            commit("auth_info",data)
+            commit('auth_false');
+          }
         }catch(err){
             return err.response
         }

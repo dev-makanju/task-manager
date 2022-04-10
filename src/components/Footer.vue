@@ -39,7 +39,12 @@
          flex-direction: column ;
          padding: 5px ;
          justify-content:space-between ;
-         align-items: center;
+     }
+
+     @media (min-width: 450px) {
+        footer{
+            align-items: center;
+        }
      }
 
      @media (min-width: 600px) {

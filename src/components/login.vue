@@ -99,6 +99,8 @@ export default {
                     this.errorMessage = res.data.message;
                 }).catch(err => {
                     this.loading = false,
+                    this.errorMessage = '';
+                    this.errorMessage = 'Failed!, try again...';
                     console.log(err);
                 });
             }

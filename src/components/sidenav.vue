@@ -4,7 +4,31 @@
             <div @click="$emit('close-navbar')" v-if="isAdminMobile" class="side-link-wrapper">
                 <font-awesome-icon class="link-wrapper" :icon="['fas', 'arrow-left']"/>  
             </div>
-            <div class="side-nav info">
+            <div v-if="this.$store.state.auth.load" class="side-nav info">      
+                    <vue-skeleton-loader
+                        class="profile-icon"
+                        type="circle"
+                        :width="60"
+                        :height="60"
+                        animation="fade"/>
+                    <ul class="user-info">
+                        <vue-skeleton-loader
+                           style="margin-top: 10px"
+                           type="rect"
+                           :width="100"
+                           :height="10"
+                           :rounded="true"
+                           animation="fade"/>
+                        <vue-skeleton-loader
+                            style="margin-top: 10px"
+                            type="rect"
+                            :width="70"
+                            :height="10"
+                            :rounded="true"
+                            animation="fade"/>
+                    </ul>
+            </div>
+            <div v-if="!this.$store.state.auth.load" class="side-nav info">
                     <img class="profile-icon" src="../assets/userIcon.png">
                     <ul class="user-info">
                         <p>{{ user.name }}</p>
@@ -62,8 +86,15 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import VueSkeletonLoader from 'skeleton-loader-vue';
     export default {
         props:[ 'isAdminMobile' ],
+        components:{
+            VueSkeletonLoader 
+        },
+        created(){
+           console.log(this.$store.state.auth.loading)
+        },
         methods:{
             logUserOut(){
                 this.$store.dispatch('logout')   
