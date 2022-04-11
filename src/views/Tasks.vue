@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative;" class="main">
-        <Loading/>
-        <Modal/>
+        <Loading v-if="loading"/>
+        <Modal v-if="modal"/>
         <div class="dashboard-container">
         <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>
         <main class="main">
@@ -11,12 +11,12 @@
                 <div class="scroll-body">
                 <table width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
-                        <th>s/n</th>
-                        <th>title</th>
-                        <th>created at</th>
-                        <th>status</th>
-                        <th>edit</th>
-                        <th>delete</th>
+                        <th>S/N</th>
+                        <th>Title</th>
+                        <th>Created at</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -37,7 +37,7 @@
                                  <td>20th , Aug 2022 </td>
                                  <td>pending</td>
                                  <td>
-                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
+                                    <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
                                  </td>
                                  <td>
                                      <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
@@ -65,14 +65,14 @@
 </template>
 
 <script>
-    //import Loading from '../components/Loading.vue'
-    //import Modal from '../components/modal.vue'
+    import Loading from '../components/Loading.vue'
+    import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
     export default {
         name:"addTask",
         components:{
-             Sidenav,adminHeader
+             Sidenav,adminHeader,Loading,Modal
         },
         data(){
             return{
@@ -138,7 +138,7 @@
 }
 
 table{
-    border: 1px solid rgb(189, 201, 230);
+    border: 2px solid rgb(189, 201, 230);
     border-radius: 7px;
     border-collapse: collapse;
     width: 100%;
@@ -146,17 +146,28 @@ table{
 }
 
 th{
-   border: 1px solid rgb(189, 201, 230);
-   padding: 7px 20px;
-   font-size: 14px;
-   font-weight: bold;
+   border: 2px solid rgb(189, 201, 230);
+   padding: 10px 20px;
+   font-size: 16px;
+   font-weight: 500 ;
+   color: rgb(36, 81, 185);
+
 }
 
 td{
-   border: 1px solid rgb(189, 201, 230);
-   padding: 7px 20px;
+   border: 2px solid rgb(189, 201, 230);
+   padding: 10px 20px;
    font-size: 14px;
    text-align: center;
+   font-size: 16px ;
+   font-weight: 500 ;
+   color: rgb(63, 117, 243);
+}
+
+@media (max-width: 600px) {
+    td{
+       padding: 2px ;
+    }
 }
 
 tr:nth-child(odd){

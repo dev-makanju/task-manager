@@ -2,9 +2,9 @@
   <div id="app">
     <div id="nav" v-cloak>
         <Navigation v-cloak v-if="!showNavbar"/>
-            <router-view/>
-        <Footer v-cloak v-if="!showNavbar"/>
+        <router-view/>
     </div>
+    <Footer v-cloak v-if="!showNavbar"/>
   </div>
 </template>
 <script>
@@ -90,6 +90,7 @@ p{
    font-family: 'Merriweather', serif;
 }
 
+
 h1 , h2 , h3 , h4 , h5 , h6{
   color: #eee;
   padding: 0.6rem;
@@ -102,6 +103,7 @@ h1 , h2 , h3 , h4 , h5 , h6{
   font-family: 'Merriweather', serif;
 }
 
+
 ul , ol , li , a {
   list-style-type: none ;
   text-decoration: none ;
@@ -109,6 +111,7 @@ ul , ol , li , a {
   font-weight:  400;
   color: rgb(33, 64, 138) ;
 }
+
 
 html {
    font-size: 62.5%;
@@ -118,6 +121,7 @@ html {
    line-height: 1.7;
    outline: none;
 }
+
 
 body{
   line-height: 1.6;
@@ -134,26 +138,37 @@ body{
   flex-direction: column;
 }
 
+#nav{
+    display: flex;
+    min-height: 100vh;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
 ::selection{
   box-shadow: 0px 20px 5px rgba(0 , 0 , 0 .3);
   color: #fff;
 }
+
 
 ::-webkit-scrollbar {
     width: 10px;
     background:lightgray;
 }
 
+
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgb(189, 198, 201); 
     border-radius: 17px;
 }
+
 
 ::-webkit-scrollbar-thumb {
     border-radius: 17px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
     background:#e3e8e9;
 } 
+
 
 .btn{
    width: 100%;

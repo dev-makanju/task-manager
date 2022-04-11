@@ -1,18 +1,19 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import signUp from "../views/signUp.vue"
-import Notfound from "../views/error.vue"
-import Register from "../views/signIn.vue"
-import Dashboard from "../views/dashboard.vue"
-import CreateTask from "../views/create-task.vue"
-import Task from "../views/Tasks.vue"
-import store from "../store/authService/auth"
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import signUp from "../views/signUp.vue";
+import Notfound from "../views/error.vue";
+import Register from "../views/signIn.vue";
+import Dashboard from "../views/dashboard.vue";
+import CreateTask from "../views/create-task.vue";
+import FeedPost from "../views/Feeds.vue";
+import Task from "../views/Tasks.vue";
+import store from "../store/authService/auth";
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
+    {
       path: '/',
       name: 'Home',
       component: Home,
@@ -20,8 +21,8 @@ const routes = [
           title:'Home',
           requiresAuth: false ,
       }
-  },
-  {
+    },
+    {
       path: '/register',
       name: 'signUp',
       component: signUp,
@@ -30,8 +31,8 @@ const routes = [
           requiresAuth: false,
           requiresGuest: true,
       }
-  },
-  {
+    },
+    {
       path: '/login',
       name: 'signIn',
       component:Register,
@@ -40,8 +41,8 @@ const routes = [
           requiresAuth: false ,
           requiresGuest: true,
       }
-  },
-  {
+    },
+    {
       path: '/dashboard',
       name: 'Task',
       component: Dashboard ,
@@ -49,8 +50,8 @@ const routes = [
           title:'Tasks',
           requiresAuth: true ,
       }
-  },
-  {
+    },
+    {
       path: '/dashboard/create-task',
       name: 'AddTask',
       component:CreateTask,
@@ -58,7 +59,16 @@ const routes = [
         title:'Create-task',
         requiresAuth: true ,
       }
-  },
+    },
+    {
+      path: '/posts',
+      name: 'Feed',
+      component:FeedPost,
+      meta:{
+        title:'post',
+        requiresAuth: false ,
+      }
+    },
   {
       path: '/dashboard/tasks',
       name: 'allTask',

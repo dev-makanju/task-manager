@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative;" class="main">
-        <Loading/>
-        <Modal/>
+        <Loading v-if="loading"/>
+        <Modal v-if="modal"/>
         <div class="dashboard-container">
         <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>
         <main class="main">
@@ -11,13 +11,34 @@
                 <div class="task">
                       <!--add a new task finder-->
                       <div class="Add-a-task">
+                          <!--include error-->
+                           <div v-if="appError" class="app-error">
+                               {{ modalMessage }}
+                           </div>
+
                            <input 
                               type="text"
                               id="task"
                               name="task"
-                              placeholder="Set a task"
-                           >
-                           <button class="btn-btn-input">submit</button>
+                              placeholder="Set a task title"
+                              v-model.trim="taskName">
+
+                           <textarea name="" 
+                                id="" 
+                                cols="30" 
+                                rows="10" 
+                                v-model.trim="taskBody"
+                                placeholder="Description">
+                           </textarea>
+
+                           <button @click="createTask" class="btn-btn-input">Create</button>
+                           
+                           <button 
+                                v-if="isEditingUser" 
+                                @click="createTask()" 
+                                class="btn-btn-input">
+                                    Update
+                            </button>
                       </div>
                 </div>  
             </div>
@@ -27,19 +48,29 @@
 </template>
 
 <script>
-    //import Loading from '../components/Loading.vue'
-    //import Modal from '../components/modal.vue'
+    import Loading from '../components/Loading.vue'
+    import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
     export default {
         name:"addTask",
         components:{
-             Sidenav,adminHeader
+            Sidenav,
+            adminHeader,
+            Loading,
+            Modal,
         },
         data(){
             return{
-                isAdminMobile:null,
-                adminScreenWidth:null
+                taskName: '',
+                taskBody: '',
+                isAdminMobile: null,
+                adminScreenWidth: null,
+                loading: null,
+                modal: null,
+                isModal: null,
+                modalMessage: "Oops! , input feilds is required",
+                appError: null
             }
         },
         created(){
@@ -61,7 +92,21 @@
             openNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.add('open')
-            }
+            },
+            createTask(){
+                const data = {
+                    taskTitle: this.taskName,
+                    taskDescription: this.taskBody,
+                }
+                if(data.taskTitle === "" || data.taskDescription === "" ){
+                    this.appError = true;
+                    this.errorMessage = 'Oops! , input feilds are required'
+                    setTimeout( () => {
+                        this.errorMessage = '';
+                        this.appError = false;
+                    } , 5000 )
+                }this.$router.dispatch('createNewTask' , data )
+            },
         },
         watch:{
             $route(){
@@ -76,31 +121,58 @@
 /********
 ***Add a table cell and padding on it
 ********/
+
+.app-error{
+    padding: 10px;
+    background: #f36b5b;
+    border-radius: 5px;
+    color: #eee;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+
 .Add-a-task{
-    width: 50%;
+    width: 80%;
     margin: 0px auto;
     padding: 40px 4px;
 }
 
 .Add-a-task input{
-    padding: 7px ;
+    padding: 10px ;
     outline: none;
-    border-radius: 10px;
-    border: 1px solid rgb(2 , 40 , 129);
+    border-radius: 5px;
+    border: 2px solid rgb(201, 211, 233);;
     display: block;
     width: 100%;
+    font-family: 'Merriweather', serif;
+    box-sizing: border-box;
+}
+
+.Add-a-task textarea{
+    padding: 10px ;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid rgb(201, 211, 233);
+    display: block;
+    width: 100%;
+    margin-top: 1rem ;
+    font-family: 'Merriweather', serif;
     box-sizing: border-box;
 }
 
 .btn-btn-input{
-    padding: 7px ;
+    padding: 10px ;
     color: #eee;
-    background: rgb(2 , 40 , 129);
-    border: 1px solid rgb(2 , 40 , 129);
-    border-radius: 10px;
+    background: rgb(69, 119, 235);
+    border: 1px solid rgb(69, 119, 235);
+    border-radius: 5px;
     cursor: pointer ;
     outline: none;
+    box-shadow: 0px 2px 15px 4px rgba(0 , 0 , 0 , .3);
     margin-top: 10px;
+    font-family: 'Merriweather', serif;
 }
 
 .btn-btn-input:hover{
