@@ -84,7 +84,7 @@ export default new Vuex.Store({
       try{
         const response = await eventServices.updateTaskEvent(payload);
         if(response.data.success){
-          commit('UPDATE_TASK' , payload)
+            commit('UPDATE_TASK' , payload)
         }
       }catch(err){
         this.errMessage = err.message;
@@ -107,7 +107,7 @@ export default new Vuex.Store({
           const response = await eventServices.createTask(data);
           console.log(response);
           if(response.status){
-              console.log(response);
+              //
           }
           return response;
        }catch(err){

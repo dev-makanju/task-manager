@@ -12,7 +12,7 @@
                       <!--add a new task finder-->
                       <div class="Add-a-task">
                           <!--include error-->
-                           <div v-if="appError" class="app-error">
+                           <div v-if="error" class="app-error">
                                {{ errorMessage }}
                            </div>
 
@@ -53,6 +53,7 @@
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
     import { mapActions } from 'vuex'
+    
     export default {
         name:"addTask",
         components:{
@@ -72,7 +73,7 @@
                 isModal: null,
                 errorMessage: "",
                 modalMessage:"",
-                appError: null,
+                error: null,
                 isEditingUser: null,
             }
         },
@@ -82,6 +83,7 @@
         },
         methods:{
             ...mapActions(['createNewTask']),
+
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -102,42 +104,50 @@
                     taskTitle: this.taskName,
                     taskDescription: this.taskBody,
                 }
+
                 if(data.taskTitle === "" || data.taskDescription === "" ){
-                    this.appError = true;
+                    this.error = true;
                     this.errorMessage = 'Oops!, input feilds are required'
                     setTimeout( () => {
                         this.errorMessage = '';
-                        this.appError = false;
+                        this.error = false;
                     } , 5000 )
                 }else{
-                    this.loading = true ;
+                    this.loading = true;
                     this.createNewTask(data).then( res => {
                         this.errorMessage = '';
-                        console.log(res)
-                        if(res.success){
-                           console.log(res.data);
-                           this.loading = false;
-                           this.modal = true;
-                           this.modalMessage = "Task Created Successfully"
-                        }this.loading = false,
-                        this.appError = true;
-                        this.errorMessage = res.data.message;
-                        setTimeout(() => {
-                            this.appError = false
-                            this.errorMessage = ''; 
-                        }, 5000)
+                           if(res.status){
+                                console.log(res.data);
+                                this.loading = false;
+                                this.modal = true;
+                                this.modalMessage = "Task "
+                           }else{
+                                this.loading = false,
+                                this.error = true ;
+                                this.errorMessage = res.data.message;
+                                setTimeout(() => {
+                                    this.error = false
+                                    this.errorMessage = '' ; 
+                                }, 5000)
+                           }
                     }).catch(error => {
                         console.log(error)
                         this.loading = false,
-                        this.appError = true
+                        this.error = true
                         this.errorMessage = 'Oops, something went wrong!';    
                         setTimeout(() => {
-                            this.appError = false
+                            this.error = false
                             this.errorMessage = ''; 
                         }, 5000)
                     })
                 }
             },
+            closeModal(){
+                this.modal = !this.modal
+                //clear form
+                this.taskName = ''
+                this.taskBody = ''
+            }
         },
         watch:{
             $route(){
