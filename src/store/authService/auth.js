@@ -5,9 +5,9 @@ import router from '../../router'
 
 
 const state = {
-    token: localStorage.getItem("token") || "",
+    token: localStorage.getItem("token") || '',
     user: {},
-    status:"",
+    status: '',
     load:null,
 }
 
@@ -20,6 +20,7 @@ const getters = {
 const mutations = {
     auth_request(){
         state.status = "loading"
+        console.log(state.token,'hello');
     },
     auth_info(state , payload){
         state.token = payload.token
@@ -42,7 +43,6 @@ const mutations = {
     auth_false(){
         state.load = false
     }
-
 }
 
 const actions = {
@@ -91,7 +91,7 @@ const actions = {
           commit('auth_true');
           const response = await eventServices.getUserInfo();
           if(response.status){   
-            const token = response.data.token;
+            const token = localStorage.getItem("token");
             const user = response.data.user;
             const data = {
                 token: token,

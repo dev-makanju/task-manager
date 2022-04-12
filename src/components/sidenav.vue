@@ -92,9 +92,6 @@
         components:{
             VueSkeletonLoader 
         },
-        created(){
-           console.log(this.$store.state.auth.loading)
-        },
         methods:{
             logUserOut(){
                 this.$store.dispatch('logout')   

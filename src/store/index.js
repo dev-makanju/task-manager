@@ -61,20 +61,20 @@ export default new Vuex.Store({
     async getAllTask( state , payload ){
         try{
           const response = await eventServices.getTaskEvent(payload);
+          console.log(response);
           response.forEach(doc => {
             if(!state.tasks.some( task => task._id === doc._id)){
               const data = {
-                 _id: doc._id,
-                 title : doc.title,
-                 status : doc.status,
-                 created : doc.created,
-                 updated_at : doc.updated_at,
+                  _id: doc._id,
+                  title : doc.title,
+                  status : doc.status,
+                  created : doc.created,
+                  updated_at : doc.updated_at,
               }
               state.tasks.push(data);
+              return response;
             }
           });
-
-        
         }catch(err){
             this.errMessage = err.message;
         }
@@ -105,9 +105,8 @@ export default new Vuex.Store({
     async createNewTask(data){
        try{
           const response = await eventServices.createTask(data);
-          console.log(response);
-          if(response.status){
-              //
+          if(response.status ===   'success'){
+              console.log('Created!!!');
           }
           return response;
        }catch(err){

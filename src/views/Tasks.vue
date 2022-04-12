@@ -92,9 +92,10 @@
         created(){
             this.checkSreensize();
             addEventListener("resize" , this.checkSreensize)
+            this.getUserData();
         },
         methods:{
-            ...mapActions(['deleteTask']),
+            ...mapActions(['deleteTask' , 'getAllTask' ]),
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -117,6 +118,13 @@
                     }
                 }).catch( err => {
                     console.error(err)
+                });
+            },
+            getUserData(){
+                this.getAllTask().then( res => {
+                    console.log(res)
+                }).catch( err => {
+                    console.log(err)
                 })
             }
         },

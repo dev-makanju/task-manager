@@ -117,7 +117,6 @@
                     this.createNewTask(data).then( res => {
                         this.errorMessage = '';
                            if(res.status){
-                                console.log(res.data);
                                 this.loading = false;
                                 this.modal = true;
                                 this.modalMessage = "Task "
@@ -131,14 +130,14 @@
                                 }, 5000)
                            }
                     }).catch(error => {
-                        console.log(error)
                         this.loading = false,
                         this.error = true
                         this.errorMessage = 'Oops, something went wrong!';    
                         setTimeout(() => {
                             this.error = false
                             this.errorMessage = ''; 
-                        }, 5000)
+                        }, 5000 )
+                        console.log(error);
                     })
                 }
             },
