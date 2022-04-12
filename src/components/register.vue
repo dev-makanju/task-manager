@@ -158,8 +158,14 @@ export default {
                      this.showError = true;
                      this.errorMessage = res.data.message ;
                 }).catch( err => {
-                    this.loading = false ;
-                    console.log(err);
+                    this.loading = false,
+                    this.showError = true
+                        this.errorMessage = 'Oops, something went wrong!';    
+                    setTimeout(() => {
+                        this.showError = false
+                        this.errorMessage = ''; 
+                    }, 5000)
+                    console.error(err);
                 });
             }
         },

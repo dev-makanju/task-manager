@@ -100,7 +100,19 @@ export default new Vuex.Store({
       }catch(err){
         this.errMessage = err.message
       }
-      
+    },
+
+    async createNewTask(data){
+       try{
+          const response = await eventServices.createTask(data);
+          console.log(response);
+          if(response.status){
+              console.log(response);
+          }
+          return response;
+       }catch(err){
+          return err.response
+       }
     }
   },
   modules: {

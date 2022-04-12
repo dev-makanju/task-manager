@@ -5,7 +5,7 @@ const apiClient = axios.create({
     //baseURL:'https://mikepostapp.herokuapp.com/',
     headers:{
         'Access-Control-Allow-Origin':'*',
-        'Authorization': 'Bearer '+token
+        'Authorization': 'Bearer '+token,
     }
 })
 
@@ -22,10 +22,13 @@ export default{
     getTaskEvent(){
         return apiClient.get('feed/posts');
     },
+    createTask(data){     
+        return apiClient.post('feed/post', data );
+    },
     updateTaskEvent(taskId){
-        return apiClient.put('task' , taskId );
+        return apiClient.put('task', taskId );
     },
     deleteTaskEvent(taskId){
-        return apiClient.delete('task' , taskId);
+        return apiClient.delete('task', taskId);
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative;" class="main">
         <Loading v-if="loading"/>
-        <Modal v-if="modal"/>
+        <Modal v-if="modal" @close-modal="closeModal" :modalMessage="modalMessage"/>
         <div class="dashboard-container">
         <Sidenav @close-navbar="closeNavbar" :isAdminMobile="isAdminMobile"/>
         <main class="main">
@@ -13,7 +13,7 @@
                       <div class="Add-a-task">
                           <!--include error-->
                            <div v-if="appError" class="app-error">
-                               {{ modalMessage }}
+                               {{ errorMessage }}
                            </div>
 
                            <input 
@@ -52,6 +52,7 @@
     import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
+    import { mapActions } from 'vuex'
     export default {
         name:"addTask",
         components:{
@@ -69,8 +70,10 @@
                 loading: null,
                 modal: null,
                 isModal: null,
-                modalMessage: "Oops! , input feilds is required",
-                appError: null
+                errorMessage: "",
+                modalMessage:"",
+                appError: null,
+                isEditingUser: null,
             }
         },
         created(){
@@ -78,6 +81,7 @@
             addEventListener("resize" , this.checkSreensize)
         },
         methods:{
+            ...mapActions(['createNewTask']),
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -100,12 +104,39 @@
                 }
                 if(data.taskTitle === "" || data.taskDescription === "" ){
                     this.appError = true;
-                    this.errorMessage = 'Oops! , input feilds are required'
+                    this.errorMessage = 'Oops!, input feilds are required'
                     setTimeout( () => {
                         this.errorMessage = '';
                         this.appError = false;
                     } , 5000 )
-                }this.$router.dispatch('createNewTask' , data )
+                }else{
+                    this.loading = true ;
+                    this.createNewTask(data).then( res => {
+                        this.errorMessage = '';
+                        console.log(res)
+                        if(res.success){
+                           console.log(res.data);
+                           this.loading = false;
+                           this.modal = true;
+                           this.modalMessage = "Task Created Successfully"
+                        }this.loading = false,
+                        this.appError = true;
+                        this.errorMessage = res.data.message;
+                        setTimeout(() => {
+                            this.appError = false
+                            this.errorMessage = ''; 
+                        }, 5000)
+                    }).catch(error => {
+                        console.log(error)
+                        this.loading = false,
+                        this.appError = true
+                        this.errorMessage = 'Oops, something went wrong!';    
+                        setTimeout(() => {
+                            this.appError = false
+                            this.errorMessage = ''; 
+                        }, 5000)
+                    })
+                }
             },
         },
         watch:{

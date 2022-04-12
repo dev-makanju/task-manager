@@ -49,10 +49,12 @@
                                  <td>20th , Aug 2022 </td>
                                  <td>pending</td>
                                  <td>
-                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
+                                    <router-link :to="{name:'ViewBlog' , params:{slug:'123'}}">
+                                         <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
+                                    </router-link>
                                  </td>
                                  <td>
-                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
+                                        <font-awesome-icon @click="deleteTask(post._id)" style="cursor: pointer" :icon="['fas', 'trash']"/>
                                  </td>
                              </tr>
                       </tbody>
@@ -69,6 +71,8 @@
     import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
+    import { mapActions } from 'vuex'
+
     export default {
         name:"addTask",
         components:{
@@ -77,7 +81,12 @@
         data(){
             return{
                 isAdminMobile:null,
-                adminScreenWidth:null
+                adminScreenWidth:null,
+                loading: null,
+                modal: null,
+                isModal: null,
+                modalMessage: "Oops! , input feilds is required",
+                appError: null
             }
         },
         created(){
@@ -85,6 +94,7 @@
             addEventListener("resize" , this.checkSreensize)
         },
         methods:{
+            ...mapActions(['deleteTask']),
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -99,6 +109,15 @@
             openNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.add('open')
+            },
+            deleteTask(id){
+                this.deleteTask(id).then( res => {
+                    if(res.data){
+                        //
+                    }
+                }).catch( err => {
+                    console.error(err)
+                })
             }
         },
         watch:{

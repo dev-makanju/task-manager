@@ -32,7 +32,7 @@
                     <img class="profile-icon" src="../assets/userIcon.png">
                     <ul class="user-info">
                         <p>{{ user.name }}</p>
-                        <span>Software developer</span>
+                        <span>Registered {{ user.role }}</span>
                     </ul>
             </div>
             <ul class="side-nav">
@@ -55,7 +55,7 @@
                                 <font-awesome-icon :icon="['fas', 'calendar-times']"/>
                             </div> 
                             <div class="wrap-child">
-                                <span>Calender</span>
+                                <span>Home</span>
                             </div>   
                             <div class="wrap-child">
                                 <font-awesome-icon :icon="['fas' , 'paperclip']"/>
