@@ -2,7 +2,7 @@
     <div>
         <Dashboard/>
     </div>
-</template>
+</template>~
 
 <script>
    import Dashboard from '../components/userDashboard.vue'

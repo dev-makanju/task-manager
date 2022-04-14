@@ -83,7 +83,7 @@
         },
         methods:{
             ...mapActions(['createNewTask']),
-
+            
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -107,7 +107,7 @@
 
                 if(data.taskTitle === "" || data.taskDescription === "" ){
                     this.error = true;
-                    this.errorMessage = 'Oops!, input feilds are required'
+                    this.errorMessage = 'Oops!, input fields are required'
                     setTimeout( () => {
                         this.errorMessage = '';
                         this.error = false;

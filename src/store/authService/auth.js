@@ -2,8 +2,6 @@ import axios from 'axios'
 import eventServices from '../../event/eventServices'
 import router from '../../router'
 
-
-
 const state = {
     token: localStorage.getItem("token") || '',
     user: {},
@@ -20,7 +18,6 @@ const getters = {
 const mutations = {
     auth_request(){
         state.status = "loading"
-        console.log(state.token,'hello');
     },
     auth_info(state , payload){
         state.token = payload.token
@@ -46,10 +43,12 @@ const mutations = {
 }
 
 const actions = {
+    //login user action
     async login({commit} , user){
         try{
             commit('auth_request');
             const response = await eventServices.loginEvent(user);
+            console.log(response)
             if(response.status){
                 const token = response.data.token;
                 const user = response.data.user;
@@ -66,6 +65,7 @@ const actions = {
             return err.response
         }
     } ,     
+    //register new user action
     async register({ commit} ,user){
         try{
             commit("register_req")
@@ -78,14 +78,14 @@ const actions = {
             return err.response
         }
     },
-
+    //log user out of session
     logout({commit}){
         localStorage.removeItem('token');
         router.push('/');
         commit('user_loggedout');
         location.reload();
     },
-
+    //get all user
     async getUser({commit}){
         try{
           commit('auth_true');

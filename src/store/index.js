@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from '../store/authService/auth'
 import eventServices from '../event/eventServices'
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,6 +10,7 @@ export default new Vuex.Store({
       tasks:[],
       _id:"",
       title:"",
+      description:"",
       status:"",
       created_at:"",
       updated_at:"",
@@ -54,7 +53,7 @@ export default new Vuex.Store({
              console.log(result)
           }
       }catch(err){
-         console.log(err)
+         console.log(err);
       }
     },
 
