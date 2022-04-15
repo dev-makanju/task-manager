@@ -15,6 +15,7 @@ export default new Vuex.Store({
       created_at:"",
       updated_at:"",
       taskInput: "",
+      taskCount:'',
   },
   mutations: {
     SAFE_TASK(state , payload){

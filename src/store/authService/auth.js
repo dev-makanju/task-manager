@@ -90,6 +90,7 @@ const actions = {
         try{
           commit('auth_true');
           const response = await eventServices.getUserInfo();
+          console.log(response)
           if(response.status){   
             const token = localStorage.getItem("token");
             const user = response.data.user;
