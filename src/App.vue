@@ -26,7 +26,9 @@ export default {
         }
     },
     created(){
+       console.log(this.$store.state.tasks) 
        this.checkRoute();
+
        const token = localStorage.getItem('token')
        if(token !== null){
            this.checkUser();

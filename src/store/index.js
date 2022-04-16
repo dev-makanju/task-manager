@@ -15,11 +15,10 @@ export default new Vuex.Store({
       created_at:"",
       updated_at:"",
       taskInput: "",
-      taskCount:'',
   },
   mutations: {
     SAFE_TASK(state , payload){
-       state.tasks = payload 
+       state.tasks = payload; 
     },
 
     UPDATE_TASK(state , payload){
@@ -36,43 +35,24 @@ export default new Vuex.Store({
   },
 
   actions:{  
-    async getTask(){
-      try{
-        const response = await eventServices.getAllTask();
-        if(response.status){
-            console.log(response.data);
-        }
-      }catch(err){
-           console.log(err)
-      } 
-    },
 
-    async tryLogin(){
-      try{
-          const result = await eventServices.loginEvent({ email:'emmanuel' , Password:'emmanuel' })
-          if(result){
-             console.log(result)
-          }
-      }catch(err){
-         console.log(err);
-      }
-    },
-
-    async getAllTask( state , payload ){
+    async getAllTask(context){
         try{
-          const response = await eventServices.getTaskEvent(payload);
-          console.log(response);
-          response.forEach(doc => {
-            if(!state.tasks.some( task => task._id === doc._id)){
+          const response = await eventServices.getTaskEvent();
+          //get current user id to get the user task post
+          const user_id = this.state.auth.user._id;
+          console.log(user_id)
+          response.data.posts.forEach(doc => {
+            if( user_id === doc.creator._id){
+              console.log('true');
               const data = {
-                  _id: doc._id,
-                  title : doc.title,
-                  status : doc.status,
-                  created : doc.created,
-                  updated_at : doc.updated_at,
+              //     _id: doc._id,
+              //     title : doc.title,
+              //     status : doc.status,
+              //     created : doc.created,
+              //     updated_at : doc.updated_at,
               }
-              state.tasks.push(data);
-              return response;
+              context.state.tasks.push(data);
             }
           });
         }catch(err){

@@ -1,7 +1,16 @@
 <template>
     <div class="middle-design-wrapper task-header">
         <div class="item-wrapper">
-            <p><font-awesome-icon @click="$emit('open-navbar')" v-if="isAdminMobile" class="link-wrapper" :icon="['fas', 'arrow-right']"/>  <span style="font-size: 17px;">15</span> October , 2020</p>
+            <p>
+                <font-awesome-icon 
+                    @click="$emit('open-navbar')" 
+                    v-if="isAdminMobile" class="link-wrapper" 
+                    :icon="['fas', 'arrow-right']"/>  
+                        <span style="font-size: 17px;">
+                            {{ new Date().getDate() }}
+                        </span>
+                        {{ new Date().toLocaleString('default', { month: 'long' }) }} , {{ new Date().getFullYear() }}
+                    </p>
                 </div>
             <div class="item-wrapper">
             <p class="progress-bar">1 of 5 completed</p> 

@@ -7,6 +7,7 @@ const state = {
     user: {},
     status: '',
     load:null,
+    taskCount:0,
 }
 
 const getters = {
@@ -23,6 +24,7 @@ const mutations = {
         state.token = payload.token
         state.user = payload.user
         state.status = 'success'
+        state.taskCount = payload.taskCount
     },
     register_req(){
         state.status = "loading"
@@ -47,16 +49,19 @@ const actions = {
     async login({commit} , user){
         try{
             commit('auth_request');
-            const response = await eventServices.loginEvent(user);
-            console.log(response)
+            const response = await eventServices.loginEvent(user)
             if(response.status){
                 const token = response.data.token;
                 const user = response.data.user;
+                const no_of_posts = response.data.no_of_posts
+                const task = response.data.posts
                 localStorage.setItem("token" , token);
                 axios.defaults.headers.common['Authorization'] = token;
                 const data = {
                     token: token,
                     user: user,
+                    taskCount: no_of_posts,
+                    tasks: task
                 }
                 commit("auth_info", data ); 
             }
@@ -90,13 +95,17 @@ const actions = {
         try{
           commit('auth_true');
           const response = await eventServices.getUserInfo();
-          console.log(response)
           if(response.status){   
             const token = localStorage.getItem("token");
             const user = response.data.user;
+            console.log(user)
+            const no_of_posts = response.data.no_of_posts
+            const task = response.data.posts
             const data = {
                 token: token,
                 user: user,
+                taskCount: no_of_posts,
+                tasks: task 
             }  
             commit("auth_info",data)
             commit('auth_false');

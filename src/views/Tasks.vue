@@ -7,58 +7,35 @@
         <main class="main">
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
-                  <h2 class="title">All Created Task</h2> 
-                <div class="scroll-body">
-                <table width="400" cellpadding="3" cellspacing="0" border="0" align="center">
+                   <h2 class="title">All Created Task</h2> 
+                <div  class="scroll-body">
+                <table v-if="this.$store.state.auth.taskCount != 0" width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
                         <th>S/N</th>
                         <th>Title</th>
-                        <th>Created at</th>
                         <th>Status</th>
+                        <th>Created at</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </thead>
-                    <tbody>
+                    <tbody v-for="(task , index) in $store.state.tasks" :key="task._id">
                         <tr>
-                            <td>1</td>
-                            <td>build fadaka</td>
-                            <td>20th , Aug 2022 </td>
+                            <td>{{ index+1 }}</td>
+                            <td>{{ task.title }}</td>
+                            <td>20th, Aug 2022 </td>
                             <td>pending</td>
-                                <td>
-                                     <font-awesome-icon style="cursor: pointer"  :icon="['fas', 'edit']"/>
-                                </td>
-                                <td>
-                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td>2</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
-                                    <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
-                                 </td>
-                                 <td>
-                                     <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>3</td>
-                                 <td>build fadaka</td>
-                                 <td>20th , Aug 2022 </td>
-                                 <td>pending</td>
-                                 <td>
-                                    <router-link :to="{name:'ViewBlog' , params:{slug:'123'}}">
-                                         <font-awesome-icon style="cursor: pointer" :icon="['fas', 'edit']"/>
-                                    </router-link>
-                                 </td>
-                                 <td>
-                                        <font-awesome-icon @click="deleteTask(post._id)" style="cursor: pointer" :icon="['fas', 'trash']"/>
-                                 </td>
-                             </tr>
-                      </tbody>
+                            <td>
+                                <font-awesome-icon style="cursor: pointer"  :icon="['fas', 'edit']"/>
+                            </td>
+                            <td>
+                                <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
+                            </td>
+                        </tr>
+                    </tbody>
                   </table>
+                  <div v-if="this.$store.state.auth.taskCount == 0" class="no-task-created">
+                        <h1>No Task Created...</h1>
+                  </div>
                 </div>  
             </div>
            </main>
@@ -93,9 +70,13 @@
             this.checkSreensize();
             addEventListener("resize" , this.checkSreensize)
             this.getUserData();
+            console.log(this.$store.state.tasks)
         },
+
         methods:{
             ...mapActions(['deleteTask' , 'getAllTask' ]),
+
+            //check screen size
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -103,14 +84,17 @@
                     return;
                 }this.isAdminMobile = false
             },
+            //close toggle
             closeNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.remove('open')
             },
+            //toggle navbar
             openNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.add('open')
             },
+            //delete each task entry
             deleteTask(id){
                 this.deleteTask(id).then( res => {
                     if(res.data){
@@ -120,14 +104,12 @@
                     console.error(err)
                 });
             },
+            //get all users
             getUserData(){
-                this.getAllTask().then( res => {
-                    console.log(res)
-                }).catch( err => {
-                    console.log(err)
-                })
-            }
+                this.$store.dispatch('getAllTask')
+            },
         },
+
         watch:{
             $route(){
                 this.checkSreensize()
@@ -280,6 +262,12 @@ tr:nth-child(odd){
     .tasks-wrapper{
         width: 95% ;
     }
+}
+
+.no-task-created{
+    text-align: center ;
+    padding: 40px;
+    background: rgb(161, 157, 157);
 }
 
 

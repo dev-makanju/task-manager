@@ -34,7 +34,7 @@
 
                 <ul class="side-nav">
                     <li>
-                        <router-link class="side-wraps t-center" :to="{name:'Home'}">
+                        <router-link class="side-wraps t-center" to="#">
                             <div class="wrap-child t-icon">
                                 <font-awesome-icon  :icon="['fas', 'search-dollar']"/>
                             </div> 
@@ -44,7 +44,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link class="side-wraps t-center" :to="{name:'Home'}">
+                        <router-link class="side-wraps t-center" to="#">
                             <div class="wrap-child t-icon">
                                 <font-awesome-icon :icon="['fas', 'layer-group']"/>
                             </div> 
@@ -54,7 +54,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link class="side-wraps t-center" :to="{name:'Home'}">
+                        <router-link class="side-wraps t-center" to="#">
                             <div class="wrap-child t-icon">
                                 <font-awesome-icon :icon="['fas', 'radiation-alt']"/>
                             </div> 

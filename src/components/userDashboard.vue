@@ -422,4 +422,17 @@
     background: rgb(30, 93, 238) ;    
 }
 
+.no-task-tab{
+    padding: 20px 5px;
+}
+
+.post-not-created{
+    font-size: 18px ;
+    font-weight: 400;
+    font-family: 'Merriweather', serif;
+    color: rgb(158, 152, 152);
+    text-transform: uppercase;
+    padding: 20px ;
+}
+
 </style>
