@@ -47,8 +47,9 @@ export default new Vuex.Store({
         if(response.data.success){
             commit('UPDATE_TASK' , payload)
         }
+        return response
       }catch(err){
-        this.errMessage = err.message;
+        return err.response
       }
     },
 
@@ -57,11 +58,11 @@ export default new Vuex.Store({
         const response = await eventServices.deleteTaskEvent(payload);
         console.log(response)
         if(response.status){
-           commit("DELETE_TASK" , payload)
+            commit("DELETE_TASK" , payload)
         } 
         return response;
       }catch(err){
-        return err.response
+          return err.response
       }
     },
 
@@ -76,11 +77,22 @@ export default new Vuex.Store({
       }catch(err){
           return err.response
       }
+    },
+
+    async getPostById({commit} ,post){
+      try{
+         const response = await eventServices.getSinglePostById(post);
+         if(response.status === 'success'){
+            commit("POST_STATUS");
+         }
+         return response;
+      }catch(err){
+         return err.response
+      }
     }
   },
 
   modules: {
     auth
   },  
-
 });

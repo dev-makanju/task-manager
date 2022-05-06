@@ -8,8 +8,8 @@
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
                    <h2 class="title">All Created Task</h2> 
-                <div  class="scroll-body">
-                <table v-if="this.$store.state.auth.taskCount != 0" width="400" cellpadding="3" cellspacing="0" border="0" align="center">
+                <div v-if="this.$store.state.auth.taskCount != 0" class="scroll-body">
+                    <table v-if="this.$store.state.auth.taskCount != 0" width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
                         <th>S/N</th>
                         <th>Title</th>
@@ -25,11 +25,11 @@
                             <td>pending</td>
                             <td>{{ formatDate(task.createAt) }}</td>
                             <td>
-                                <span @click="editPost(task._id)">
+                                <router-link :to="{name:'EditTask', params:{ slug:task._id }}">
                                     <font-awesome-icon 
-                                        style="cursor: pointer"
+                                       style="cursor: pointer"
                                        :icon="['fas', 'edit']"/>
-                                </span>
+                                </router-link>
                             </td>
                             <td>
                                 <span @click="deletePost(task._id)">
@@ -40,28 +40,34 @@
                             </td>
                         </tr>
                     </tbody>
-                  </table>
-                  <div v-if="this.$store.state.auth.taskCount == 0" class="no-task-created">
-                        <h1>No Task Created...</h1>
-                  </div>
-                </div>  
+                    </table>
+                    <div v-else class="no-task-created">
+                      <h1>No Task Created...</h1>
+                    </div>
+                </div> 
+                <div v-else>
+                    <load/>
+                </div> 
             </div>
-           </main>
+        </main>
         </div>
     </div>
 </template>
 
 <script>
-    import Loading from '../components/Loading.vue'
+    import Load from '../components/load.vue'
     import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
     import Sidenav from '../components/sidenav.vue'
     import { mapActions } from 'vuex'
 
     export default {
-        name:"addTask",
+        name:"Task",
         components:{
-            Sidenav,adminHeader,Loading,Modal
+            Sidenav,
+            adminHeader,
+            Load,
+            Modal
         },
         data(){
             return{
@@ -74,12 +80,15 @@
                 appError: null
             }
         },
+        onMounted(){
+           this.$store.dispatch('getUser').auth
+        },
         created(){
             this.checkSreensize();
             addEventListener("resize", this.checkSreensize)
         },
         methods:{
-            ...mapActions(['deleteTask' , 'editTask' ]),
+            ...mapActions(['deleteTask']),
             //check screen size
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
@@ -106,17 +115,6 @@
                 return value.toLocaleDateString()
             },
 
-            editPost(id){
-                this.editTask(id).then(res => {
-                   console.log(res)
-                   if(res.data){
-                      console.log(res.data)
-                   }
-                }).catch(err => {
-                   console.log(err);
-                });
-            },
-
             deletePost(id){
                 this.deleteTask(id).then(res => {
                     if(res.status === 200){
@@ -125,7 +123,7 @@
                 }).catch(err => {
                     console.log(err);
                 });
-            }
+            },
         },
 
         watch:{

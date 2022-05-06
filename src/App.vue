@@ -38,16 +38,17 @@ export default {
            this.$store.dispatch('getUser')
         },
        checkRoute(){
-          if(this.$route.name === "signIn" || 
+            if(this.$route.name === "signIn" || 
              this.$route.name === "signUp" ||
              this.$route.name === "Task" || 
              this.$route.name === "AddTask" || 
-             this.$route.name === "allTask" ||
+             this.$route.name === "AllTask" ||
+             this.$route.name === "EditTask" ||
              this.$route.name === "error"){
 
               this.showNavbar = true;
               return;
-           }this.showNavbar = false;
+            }this.showNavbar = false;
        } 
     },
     watch:{

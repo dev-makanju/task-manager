@@ -6,8 +6,8 @@ import Notfound from "../views/error.vue";
 import Register from "../views/signIn.vue";
 import Dashboard from "../views/dashboard.vue";
 import CreateTask from "../views/create-task.vue";
-import FeedPost from "../views/Feeds.vue";
 import Task from "../views/Tasks.vue";
+import EditTask from "../views/EditTask.vue"
 import store from "../store/authService/auth";
 
 Vue.use(VueRouter)
@@ -61,20 +61,20 @@ const routes = [
       }
     },
     {
-      path: '/posts',
-      name: 'Feed',
-      component:FeedPost,
+      path: '/dashboard/edit/:slug',
+      name: 'EditTask',
+      component:EditTask,
       meta:{
-        title:'post',
-        requiresAuth: false ,
+        title:'Edit',
+        requiresAuth: true ,
       }
     },
   {
       path: '/dashboard/tasks',
-      name: 'allTask',
+      name: 'AllTask',
       component: Task,
-      meta: { 
-          title: 'Add-task',
+      meta:{ 
+          title: 'Task',
           requiresAuth: true , 
       }
   },

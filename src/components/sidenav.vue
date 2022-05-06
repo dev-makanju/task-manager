@@ -63,7 +63,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link class="side-wraps" :to="{name:'allTask'}">
+                        <router-link class="side-wraps" :to="{name:'AllTask'}">
                             <div class="wrap-child">
                                 <font-awesome-icon :icon="['fas', 'tasks']"/>
                             </div> 

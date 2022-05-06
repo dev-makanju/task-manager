@@ -7,7 +7,7 @@
         <main class="main">
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
-                    <h2 class="title">Add a new task</h2> 
+                    <h2 class="title">Edit Task</h2> 
                 <div class="task">
                       <!--add a new task finder-->
                       <div class="Add-a-task">
@@ -31,15 +31,7 @@
                                 placeholder="Description">
                            </textarea>
 
-                            <button  
-                               v-if="!isEditingUser"
-                               @click="createTask" 
-                               class="btn-btn-input">
-                                   Create
-                            </button>
-                           
                             <button 
-                                v-if="isEditingUser" 
                                 @click="updateTask()" 
                                 class="btn-btn-input">
                                     Update
@@ -53,6 +45,7 @@
 </template>
 
 <script>
+
     import Loading from '../components/Loading.vue'
     import Modal from '../components/Modal.vue'
     import adminHeader from '../components/admin-header'
@@ -60,13 +53,13 @@
     import { mapActions } from 'vuex'
     
     export default {
-        name:"addTask",
+        name:"EditTask",
         components:{
             Sidenav,
             adminHeader,
             Loading,
             Modal,
-        },        
+        },     
         data(){
             return{
                 taskName: '',
@@ -79,23 +72,25 @@
                 errorMessage: "",
                 modalMessage:"",
                 error: null,
-                isEditingUser: null,
             }
+        },
+
+        mounted(){
+            this.getPost()
         },
 
         created(){
             this.checkSreensize();
             addEventListener("resize" , this.checkSreensize)
         },
-        
         methods:{
-            ...mapActions(['AddTask' , 'editTask']),
+            ...mapActions(['AddTask' , 'editTask' , 'getPostById' ]),
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
                     this.isAdminMobile = true;
                     return;
-                }this.isAdminMobile = false;
+                }this.isAdminMobile = false
             },
 
             closeNavbar(){
@@ -108,48 +103,30 @@
                 aside.classList.add('open');
             },
 
-            createTask(){
-                if(this.taskName === "" || this.taskBody === "" ){
-                    this.error = true;
-                    this.errorMessage = 'Oops!, input fields are required'
-                    setTimeout( () => {
-                        this.errorMessage = '';
-                        this.error = false;
-                    }, 5000);
-                }else{
-                    let post = {
-                        title: this.taskName,
-                        content: this.taskBody
-                    }
-                    this.loading = true;
-                    this.AddTask(post).then( res => {
-                        console.log(res)
-                        this.errorMessage = '';
-                            if(res.status){
-                                this.loading = false;
-                                this.modal = true;
-                                this.modalMessage = "Task"
-                                this.$store.dispatch('getUser').auth;
-                            }else{
-                                this.loading = false,
-                                this.error = true ;
-                                this.errorMessage = res.data.message;
-                                setTimeout(() => {
-                                    this.error = false
-                                    this.errorMessage = '' ; 
-                                }, 5000)
-                            }
-                    }).catch(error => {
-                        this.loading = false,
-                        this.error = true
-                        this.errorMessage = 'Oops, something went wrong!';    
+            getPost(){
+                const id = this.$route.params.slug
+                this.getPostById(id).then(res => {
+                    if(res.status){
+                       this.taskName = res.data.post.title
+                       this.taskBody = res.data.post.content
+                    }else{this.loading = false,
+                        this.error = true ;
+                        this.errorMessage = res.data.message;
                         setTimeout(() => {
                             this.error = false
-                            this.errorMessage = ''; 
+                            this.errorMessage = '' ; 
                         }, 5000);
-                        console.log(error);
-                    });
-                }
+                    }
+                }).catch(err => {
+                    this.loading = false,
+                    this.error = true
+                    this.errorMessage = 'Oops, something went wrong!';    
+                    setTimeout(() => {  
+                        this.error = false
+                        this.errorMessage = ''; 
+                    }, 5000);
+                    console.log(err);
+                })
             },
 
             updateTask(){
@@ -165,11 +142,11 @@
                         title: this.taskName,
                         content: this.taskBody
                     }
+                    let id = this.$route.params.slug;
                     this.loading = true;
-                    this.editTask(post).then( res => {
-                        console.log(res);
+                    this.editTask({ post , id }).then( res => {
                         this.errorMessage = '';
-                            if(res.status){
+                            if(res.status === 200){
                                 this.loading = false;
                                 this.modal = true;
                                 this.modalMessage = "Task"
@@ -202,8 +179,8 @@
                 this.taskName = ''
                 this.taskBody = ''
             }
-
         },
+
         watch:{
             $route(){
                 this.checkSreensize()
@@ -219,13 +196,13 @@
 ********/
 
 .app-error{
-    padding: 10px;
-    background: #f36b5b;
-    border-radius: 5px;
-    color: #eee;
-    font-size: 16px;
-    text-align: center;
-    border: 1px solid #eee;
+   padding: 10px;
+   background: #f36b5b;
+   border-radius: 5px;
+   color: #eee;
+   font-size: 16px;
+   text-align: center;
+   border: 1px solid #eee;
 }
 
 

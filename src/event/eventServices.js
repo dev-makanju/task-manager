@@ -19,14 +19,14 @@ export default{
     registerEvent(user){
         return apiClient.post('auth/signup' , user);
     },
-    getTaskEvent(){
-        return apiClient.get('feed/posts');
+    getSinglePostById(data){
+        return apiClient.get('feed/post/'+ data);
     },
     createTask(data){     
         return apiClient.post('feed/post', data);
     },
-    updateTaskEvent(taskId){
-        return apiClient.put('feed/post/'+taskId);
+    updateTaskEvent(data){
+        return apiClient.patch(`feed/post/${data.id}`, data.post);
     },
     deleteTaskEvent(taskId){
         return apiClient.delete('feed/post/'+taskId);
