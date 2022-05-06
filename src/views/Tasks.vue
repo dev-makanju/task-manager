@@ -22,13 +22,21 @@
                         <tr>
                             <td>{{ index+1 }}</td>
                             <td>{{ task.title }}</td>
-                            <td>20th, Aug 2022 </td>
                             <td>pending</td>
+                            <td>{{ formatDate(task.createAt) }}</td>
                             <td>
-                                <font-awesome-icon style="cursor: pointer"  :icon="['fas', 'edit']"/>
+                                <span @click="editPost(task._id)">
+                                    <font-awesome-icon 
+                                        style="cursor: pointer"
+                                       :icon="['fas', 'edit']"/>
+                                </span>
                             </td>
                             <td>
-                                <font-awesome-icon style="cursor: pointer" :icon="['fas', 'trash']"/>
+                                <span @click="deletePost(task._id)">
+                                    <font-awesome-icon 
+                                        style="cursor: pointer"  
+                                       :icon="['fas', 'trash']"/>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
@@ -53,7 +61,7 @@
     export default {
         name:"addTask",
         components:{
-             Sidenav,adminHeader,Loading,Modal
+            Sidenav,adminHeader,Loading,Modal
         },
         data(){
             return{
@@ -62,20 +70,16 @@
                 loading: null,
                 modal: null,
                 isModal: null,
-                modalMessage: "Oops! , input feilds is required",
+                modalMessage: "Oops!, input feilds is required",
                 appError: null
             }
         },
         created(){
             this.checkSreensize();
-            addEventListener("resize" , this.checkSreensize)
-            this.getUserData();
-            console.log(this.$store.state.tasks)
+            addEventListener("resize", this.checkSreensize)
         },
-
         methods:{
-            ...mapActions(['deleteTask' , 'getAllTask' ]),
-
+            ...mapActions(['deleteTask' , 'editTask' ]),
             //check screen size
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
@@ -84,37 +88,51 @@
                     return;
                 }this.isAdminMobile = false
             },
+
             //close toggle
             closeNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.remove('open')
             },
+
             //toggle navbar
             openNavbar(){
                 const aside = document.querySelector("#aside")
                 aside.classList.add('open')
             },
-            //delete each task entry
-            deleteTask(id){
-                this.deleteTask(id).then( res => {
-                    if(res.data){
-                        //
-                    }
-                }).catch( err => {
-                    console.error(err)
+            
+            formatDate(date){
+                const value = new Date(date)
+                return value.toLocaleDateString()
+            },
+
+            editPost(id){
+                this.editTask(id).then(res => {
+                   console.log(res)
+                   if(res.data){
+                      console.log(res.data)
+                   }
+                }).catch(err => {
+                   console.log(err);
                 });
             },
-            //get all users
-            getUserData(){
-                this.$store.dispatch('getAllTask')
-            },
+
+            deletePost(id){
+                this.deleteTask(id).then(res => {
+                    if(res.status === 200){
+                       console.log('deleted');
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            }
         },
 
         watch:{
             $route(){
                 this.checkSreensize()
             }
-        }
+        },
     }
 </script>
 
@@ -160,6 +178,7 @@ th{
    font-size: 16px;
    font-weight: 500 ;
    color: rgb(36, 81, 185);
+   font-family: 'Merriweather', serif;
 
 }
 
@@ -167,10 +186,15 @@ td{
    border: 2px solid rgb(189, 201, 230);
    padding: 10px 20px;
    font-size: 14px;
-   text-align: center;
    font-size: 16px ;
+   text-align: center;
    font-weight: 500 ;
    color: rgb(63, 117, 243);
+   font-family: 'Merriweather', serif;
+}
+
+td:nth-child(2){
+   text-align: left;
 }
 
 @media (max-width: 600px) {

@@ -26,19 +26,17 @@ export default {
         }
     },
     created(){
-       console.log(this.$store.state.tasks) 
        this.checkRoute();
-
        const token = localStorage.getItem('token')
        if(token !== null){
            this.checkUser();
        }
     },
     methods:{
-       ...mapActions(['getUser']),
-       checkUser(){
+        ...mapActions(['getUser']),
+        checkUser(){
            this.$store.dispatch('getUser')
-       },
+        },
        checkRoute(){
           if(this.$route.name === "signIn" || 
              this.$route.name === "signUp" ||
@@ -50,7 +48,7 @@ export default {
               this.showNavbar = true;
               return;
            }this.showNavbar = false;
-       }
+       } 
     },
     watch:{
       $route(){

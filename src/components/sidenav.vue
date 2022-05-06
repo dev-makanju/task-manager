@@ -75,6 +75,20 @@
                             </div>         
                         </router-link>
                     </li>
+
+                     <li>
+                        <router-link class="side-wraps" :to="{name:'AddTask'}">
+                            <div class="wrap-child">
+                                <font-awesome-icon :icon="['fas', 'plus']"/>
+                            </div> 
+                             <div class="wrap-child">
+                                <span>Add Task</span>
+                            </div>   
+                            <div class="wrap-child">
+                                <font-awesome-icon :icon="['fas' , 'paperclip']"/>
+                            </div>         
+                        </router-link>
+                    </li>
                 </ul>
             </div>
 

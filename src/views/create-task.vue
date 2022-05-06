@@ -82,8 +82,7 @@
             addEventListener("resize" , this.checkSreensize)
         },
         methods:{
-            ...mapActions(['createNewTask']),
-            
+            ...mapActions(['AddTask']),
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
                 if(this.adminScreenWidth <= 900 ){
@@ -93,34 +92,35 @@
             },
             closeNavbar(){
                 const aside = document.querySelector("#aside")
-                aside.classList.remove('open')
+                aside.classList.remove('open');
             },
             openNavbar(){
-                const aside = document.querySelector("#aside")
-                aside.classList.add('open')
+                const aside = document.querySelector("#aside");
+                aside.classList.add('open');
             },
             createTask(){
-                const data = {
-                    taskTitle: this.taskName,
-                    taskDescription: this.taskBody,
-                }
-
-                if(data.taskTitle === "" || data.taskDescription === "" ){
+                if(this.taskName === "" || this.taskBody === "" ){
                     this.error = true;
                     this.errorMessage = 'Oops!, input fields are required'
                     setTimeout( () => {
                         this.errorMessage = '';
                         this.error = false;
-                    } , 5000 )
+                    }, 5000);
                 }else{
+                    let post = {
+                        title: this.taskName,
+                        content: this.taskBody
+                    }
                     this.loading = true;
-                    this.createNewTask(data).then( res => {
+                    this.AddTask(post).then( res => {
+                        console.log(res)
                         this.errorMessage = '';
-                           if(res.status){
+                            if(res.status){
                                 this.loading = false;
                                 this.modal = true;
-                                this.modalMessage = "Task "
-                           }else{
+                                this.modalMessage = "Task"
+                                this.$store.dispatch('getUser').auth;
+                            }else{
                                 this.loading = false,
                                 this.error = true ;
                                 this.errorMessage = res.data.message;
@@ -128,7 +128,7 @@
                                     this.error = false
                                     this.errorMessage = '' ; 
                                 }, 5000)
-                           }
+                            }
                     }).catch(error => {
                         this.loading = false,
                         this.error = true
@@ -138,11 +138,12 @@
                             this.errorMessage = ''; 
                         }, 5000 )
                         console.log(error);
-                    })
+                    });
                 }
             },
             closeModal(){
-                this.modal = !this.modal
+                this.modal = !this.modal  
+                this.$router.push({name:'allTask'})
                 //clear form
                 this.taskName = ''
                 this.taskBody = ''

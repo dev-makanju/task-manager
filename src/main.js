@@ -9,6 +9,7 @@ import vuelidate from 'vuelidate'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import {  faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
@@ -49,13 +50,13 @@ library.add(faArrowLeft)
 library.add(faEyeSlash)
 library.add(faEye)
 library.add(faEdit)
+library.add(faPlus)
 library.add(faTrash)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
 Vue.config.productionTip = false
-
 Vue.directive('scrollanimation' , scrollAnimation)
 Vue.use(VueAxios, axios);
 Vue.use(vuelidate);

@@ -5,17 +5,20 @@ import eventServices from '../event/eventServices'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
-      taskLoaded:null, 
-      tasks:[],
-      _id:"",
-      title:"",
-      description:"",
-      status:"",
-      created_at:"",
-      updated_at:"",
+      taskLoaded: null, 
+      postAdded: '',
+      tasks: [],
+      _id: "",
+      title: "",
+      description: "",
+      status: "",
+      created_at: "",
+      updated_at: "",
       taskInput: "",
   },
+
   mutations: {
     SAFE_TASK(state , payload){
        state.tasks = payload; 
@@ -31,35 +34,13 @@ export default new Vuex.Store({
 
     DELETE_TASK(state , payload){
         state.tasks = state.tasks.filter(task => task._id !== payload)
+    },
+    POST_CREATED(state){
+       state.postAdded = 'success';
     }
   },
 
   actions:{  
-
-    async getAllTask(context){
-        try{
-          const response = await eventServices.getTaskEvent();
-          //get current user id to get the user task post
-          const user_id = this.state.auth.user._id;
-          console.log(user_id)
-          response.data.posts.forEach(doc => {
-            if( user_id === doc.creator._id){
-              console.log('true');
-              const data = {
-              //     _id: doc._id,
-              //     title : doc.title,
-              //     status : doc.status,
-              //     created : doc.created,
-              //     updated_at : doc.updated_at,
-              }
-              context.state.tasks.push(data);
-            }
-          });
-        }catch(err){
-            this.errMessage = err.message;
-        }
-    },
-
     async editTask({commit} , payload){
       try{
         const response = await eventServices.updateTaskEvent(payload);
@@ -73,27 +54,31 @@ export default new Vuex.Store({
 
     async deleteTask({commit} , payload){
       try{
-         const response = await eventServices.deleteTaskEvent(payload);
-         if(response.data.success){
-            commit("DELETE_TASK" , payload)
-         } 
+        const response = await eventServices.deleteTaskEvent(payload);
+        console.log(response)
+        if(response.status){
+           commit("DELETE_TASK" , payload)
+        } 
+        return response;
       }catch(err){
-        this.errMessage = err.message
+        return err.response
       }
     },
 
-    async createNewTask(data){
-       try{
-          const response = await eventServices.createTask(data);
-          if(response.status ===   'success'){
-              console.log('Created!!!');
-          }
-          return response;
-       }catch(err){
+    async AddTask({commit} ,post){
+      try{
+        console.log(post)
+        const response = await eventServices.createTask(post);
+        if(response.status === 'success'){
+          commit("POST_CREATED")
+        }
+        return response;
+      }catch(err){
           return err.response
-       }
+      }
     }
   },
+
   modules: {
     auth
   },  

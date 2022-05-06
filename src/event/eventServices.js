@@ -17,18 +17,18 @@ export default{
         return apiClient.get('auth/me');
     },
     registerEvent(user){
-        return apiClient.post('auth/signup' , user );
+        return apiClient.post('auth/signup' , user);
     },
     getTaskEvent(){
         return apiClient.get('feed/posts');
     },
     createTask(data){     
-        return apiClient.post('feed/post', data );
+        return apiClient.post('feed/post', data);
     },
     updateTaskEvent(taskId){
-        return apiClient.put('task', taskId );
+        return apiClient.put('feed/post/'+taskId);
     },
     deleteTaskEvent(taskId){
-        return apiClient.delete('task', taskId);
+        return apiClient.delete('feed/post/'+taskId);
     }
 }

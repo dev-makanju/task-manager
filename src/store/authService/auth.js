@@ -90,15 +90,17 @@ const actions = {
         commit('user_loggedout');
         location.reload();
     },
+
     //get all user
-    async getUser({commit}){
+    async getUser({commit , rootState }){
         try{
           commit('auth_true');
           const response = await eventServices.getUserInfo();
           if(response.status){   
             const token = localStorage.getItem("token");
             const user = response.data.user;
-            console.log(user)
+            rootState.tasks = user.posts 
+            console.log(user.posts)
             const no_of_posts = response.data.no_of_posts
             const task = response.data.posts
             const data = {
