@@ -8,7 +8,7 @@
             <div class="tasks-wrapper">
                 <adminHeader  @open-navbar="openNavbar" :isAdminMobile="isAdminMobile"/>
                    <h2 class="title">All Created Task</h2> 
-                <div v-if="this.$store.state.auth.taskCount != 0" class="scroll-body">
+                <div v-if="!this.$store.state.auth.load" class="scroll-body">
                     <table v-if="this.$store.state.auth.taskCount != 0" width="400" cellpadding="3" cellspacing="0" border="0" align="center">
                     <thead>
                         <th>S/N</th>
