@@ -1,26 +1,28 @@
 <template>
     <footer>
-         <div class="brand-name">
-              <h1>Task manager system</h1>
-              <p>&copy; 2022</p>
-         </div>
-         <div class="brand-name brand-item">
-              <div class="footer-items">
-                  <li>
-                      <router-link class="links" :to="{ name:'signUp'}">Sign In</router-link>
-                  </li>
-                  <li>
-                      <router-link class="links" :to="{name:'signIn'}">Sign Up</router-link>
-                  </li>
-                  <li>
-                      <router-link class="links" :to="{name:'Task'}">Dashboard</router-link>
-                  </li>
-             </div>
-             <div class="footer-items">
-                 <li>About</li>
-                 <li>Contact</li>
-             </div>
-         </div>
+        <div class="footer">
+            <div class="brand-name">
+               <h1>Task manager system</h1>
+               <p>&copy; 2022</p>
+            </div>
+            <div class="brand-name brand-item">
+                <div class="footer-items">
+                    <li>
+                        <router-link class="links" :to="{ name:'signUp'}">Sign In</router-link>
+                    </li>
+                    <li>
+                        <router-link class="links" :to="{name:'signIn'}">Sign Up</router-link>
+                    </li>
+                    <li>
+                        <router-link class="links" :to="{name:'Task'}">Dashboard</router-link>
+                    </li>
+                </div>
+                <div class="footer-items">
+                    <li>About</li>
+                    <li>Contact</li>
+                </div>
+            </div>
+        </div>
     </footer>
 </template>
 
@@ -32,13 +34,23 @@
 
 <style scoped>
      footer{
-         background: #000;
+         background: rgb(38, 38, 239);
          opacity: .7;
-         margin-top: 10%;
-         display: flex ;
-         flex-direction: column ;
          padding: 5px ;
          justify-content:space-between ;
+         max-width: 1440px;
+         margin: 0px auto;
+     }
+
+     .footer{
+         margin-top: 10%;
+         display: flex ;
+         flex-direction: row ;
+         padding: 5px;
+         justify-content:space-between ;
+         width: 80%;
+         max-width: 1440px;
+         margin: 0px auto;
      }
 
      @media (min-width: 450px) {
@@ -90,7 +102,7 @@
         color: #fff;
         cursor: pointer;
      }
-
+    
      .links{
         color: #eee;
      }

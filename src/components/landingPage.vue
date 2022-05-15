@@ -16,6 +16,7 @@
              </div>
         </div>
     </div>
+
     <div class="banner">
             <div class="banner__child text">
                 <div class="text-content">
@@ -35,6 +36,7 @@
                 </div>
            </div>
     </div>
+
     <!----landing page--->
     <div class="landing-screen main-screen">
         <div class="">
@@ -60,6 +62,27 @@
             </div>
         </div>
     </div>
+
+    <!--@third banner-->
+    <div class="main-div">
+        <div class="main-div-content">
+            <div class="third-banner-wrapper">
+                <div class="third-banner-wrapper wrapper">
+                    <div class="third-banner-wrapper background"></div>
+                    <div class="third-banner-wrapper images">
+                        <img class="desktop" src="@/assets/image002.jpg" onerror="this.style.display='none'">
+                        <img class="mobile" src="@/assets/image001.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>      
+            </div>
+            <div class="third-banner-wrapper text">
+                <div>
+                    <h1>Put In The work that deserve the win</h1>
+                    <p>Working with task manager will give you the required feel with our amazing ui and user experience, feel comfort in building your daily activities with amazing and quality user experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </template>
@@ -71,6 +94,71 @@
 </script>
 
 <style>
+/************
+***  third banner
+*************/
+
+.main-div{
+    width: 80% ;
+    max-width: 1440px ;
+    margin: 0px auto ;
+    padding: 10rem 0rem;
+}
+
+.third-banner-wrapper.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-banner-wrapper.text h1{
+    color: blue;
+}
+
+.third-banner-wrapper.text p{
+    color: blue;
+    text-transform: lowercase;
+    font-size: 18px;
+}
+
+.main-div-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.third-banner-wrapper.wrapper{
+    position: relative ;
+    height: 400px ;
+    max-width: 500px ;
+}
+
+.mobile{
+    max-width: 400px;
+    height: 300px;
+    display: none;
+}
+
+.desktop{
+    height: 300px;
+    max-width: 400px;
+}
+
+.third-banner-wrapper.background{
+    height: 300px;
+    max-width: 400px;
+    background: #2451b966;
+    position: absolute;
+    inset: 0;
+}
+
+.third-banner-wrapper.images{
+    position: absolute;
+    top: 4rem ;
+    right: 4rem ;
+    box-shadow: 0px 2px 15px 1px rgba(0 , 0 , 0 , .1);
+}
+
 /***********overlay**********/
 .phone__preview img{
     border-radius: 5px;
