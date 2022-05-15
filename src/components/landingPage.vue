@@ -19,19 +19,19 @@
 
     <div class="banner">
             <div class="banner__child text">
-                <div class="text-content">
+                    <div v-scrollanimation class="text-content">
                         <h1>Work Perfectly with Task Manager</h1>
                         <p>Work efficiently with confidence that you are not out of schedule. Create , manage , and ,make use of daily activities judiciously with task Manager.</p>
                     <div class="focus">
                         <router-link class="btn-sign-up"  :to="{name:'signUp'}">
-                            <font-awesome-icon class="icon-banner" :icon="['fas', 'lock-open']"/>
-                            Sign in
+                           <font-awesome-icon class="icon-banner" :icon="['fas', 'lock-open']"/>
+                           Sign in
                         </router-link>
                     </div>
                 </div>
             </div>
            <div class="banner__child phone">
-                <div class="phone__preview">
+                <div v-scrollanimation class="phone__preview">
                     <img src="@/assets/phone.png" onerror="this.style.display='none'">
                 </div>
            </div>
@@ -46,7 +46,7 @@
                         <h1>0</h1>
                         <h1>1</h1>
                     </ul>
-                    <div class="header-wrapper-content">
+                    <div v-scrollanimation class="header-wrapper-content">
                         <li><h1>A Little story on how you should get started.</h1></li> 
                         <li><p>You should make use of task manager on a daily basis, it will help you to increase productivity...</p></li>
                     </div>
@@ -69,14 +69,14 @@
             <div class="third-banner-wrapper">
                 <div class="third-banner-wrapper wrapper">
                     <div class="third-banner-wrapper background"></div>
-                    <div class="third-banner-wrapper images">
+                    <div v-scrollanimation class="third-banner-wrapper images">
                         <img class="desktop" src="@/assets/image002.jpg" onerror="this.style.display='none'">
                         <img class="mobile" src="@/assets/image001.jpg" onerror="this.style.display='none'">
                     </div>
                 </div>      
             </div>
             <div class="third-banner-wrapper text">
-                <div>
+                <div v-scrollanimation class="put-top">
                     <h1>Put In The work that deserve the win</h1>
                     <p>Working with task manager will give you the required feel with our amazing ui and user experience, feel comfort in building your daily activities with amazing and quality user experience</p>
                 </div>
@@ -152,11 +152,16 @@
     inset: 0;
 }
 
-.third-banner-wrapper.images{
-    position: absolute;
-    top: 4rem ;
-    right: 4rem ;
-    box-shadow: 0px 2px 15px 1px rgba(0 , 0 , 0 , .1);
+.third-banner-wrapper.images.before-enter{
+    transform: translateX(0px) translateY(0px);
+    opacity: 1;  
+    transition: 1s ease-in-out all;  
+}
+
+.third-banner-wrapper.images.enter{
+    transform: translateX(25px) translateY(35px);
+    transition: 1s ease-in-out all; 
+    opacity: 1;  
 }
 
 /***********overlay**********/
@@ -215,7 +220,7 @@
 
 .text-content p{
     color: #2451B9;
-    font-size: 14px;
+    font-size: 18px;
     text-transform: lowercase;
 }
 
@@ -308,36 +313,13 @@
    padding: 30px 0px;
 }
 
-.about-wrapper{
-    display: flex ;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column ;
-}
-
-.about-wrapper h1{
-    color:  rgb(2, 40, 129);
-    font-family: 'Montserrat', sans-serif ;
-    font-weight: 300;
-}
-
-.about-info{
-    color:  rgb(2, 40, 129);
-    font-family: 'Merriweather', serif;
-    font-weight: 600;
-    text-transform: lowercase;
-    font-size: 16px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-}
-
-.about-info.before-enter{
+.put-top.before-enter{
     transform: translateY(50px);
     transition: 1s ease-in-out all; 
     opacity:.1;
 } 
 
-.about-info.enter{
+.put-top.enter{
     opacity: 1;
     transform: translateY(0px);
     transition: 1s ease-in-out all; 
@@ -345,12 +327,45 @@
     font-weight: 350;
 } 
 
-.about-info-header{
-    color:  rgb(2, 40, 129);
-    font-family: 'Merriweather', serif;
-    text-transform: lowercase;
-    font-size: 30px;
-    font-weight: 400;
+.header-wrapper-content.before-enter{
+    transform: translateX(50px);
+    transition: 1s ease-in-out all; 
+    opacity:.1;
+}
+
+.header-wrapper-content.enter{
+    opacity: 1;
+    transform: translateX(0px);
+    transition: 1s ease-in-out all; 
+    word-spacing: 2px;
+    font-weight: 350;
+}
+
+.phone__preview.before-enter{
+    transform: scale(.8);
+    transition: 1s ease-in-out all; 
+    opacity:.1;
+}
+
+.phone__preview.enter{
+    opacity: 1;
+    transform: scale(1);
+    transition: 1s ease-in-out all; 
+}
+
+
+.text-content.before-enter{
+    transform: translateY(50px);
+    transition: 1s ease-in-out all; 
+    opacity:.1;
+}
+
+.text-content.enter{
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s ease-in-out all; 
+    word-spacing: 2px;
+    font-weight: 350;
 }
 
 @media (max-width: 620px ) {
@@ -486,46 +501,11 @@
     flex-direction: column;
 }
 
-
-@media (max-width: 450px) {
-        .children-items.before-enter:nth-child(odd){
-            transform: translateX(-240px);
-            transition: 1s ease-in-out all; 
-        }
-
-        .children-items.enter:nth-child(odd){
-            opacity: 1;
-            transform: translateX(0px);
-            transform: scale(1) rotateZ(0deg);
-        }
-
-        .children-items.before-enter:nth-child(even){
-            transform: translateX(240px);
-            transition: 1s ease-in-out all; 
-        }
-
-        .children-items.enter:nth-child(even){
-            opacity: 1;
-            transform: scale(1) rotateZ(0deg);
-        }
-}
-
-
-
 .children-items img{
     border-radius: 2px ;
     width: 250px ;
     height: 250px ;
     box-shadow: 0px 5px 55px 5px rgba(0 , 0 , 0 , .1);
-}
-
-
-@media (max-width: 900px) {
-   .landing-screen-item.main{
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-    }   
 }
 
 
