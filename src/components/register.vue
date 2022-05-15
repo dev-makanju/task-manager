@@ -5,7 +5,7 @@
     <div class="form-control">
         <div class="form-control header">
             <a href="/">
-                <h1>Create Account</h1>
+               <h1>Create Account</h1>
             </a>
         </div>
         <div  style="height:20px;">
@@ -69,7 +69,7 @@
                     placeholder="*************" 
                     v-model.trim="$v.confirmPassword.$model" 
                     :class="{ 'is-invalid':$v.confirmPassword.$error, 'is-valid':!$v.confirmPassword.$invalid }">
-                    <font-awesome-icon class="icon" :icon="['fas', 'lock-open']" />
+                    <font-awesome-icon class="icon" :icon="['fas', 'lock-open']"/>
                     <div v-if="$v.confirmPassword.$error" class="error">
                         <span v-if="!$v.password.required">confirm password is required</span>
                         <span v-if="!$v.password.sameAsPassword">confirm password is not a match!</span>

@@ -1,8 +1,9 @@
 <template>
     <header>
-          <div class="title-wrapper">
+        <div class="header">
+            <div class="title-wrapper">
               <router-link to="/">
-                  <h1>Task <span class="small-font">Timer</span></h1>
+                  <h1>Task<span class="small-font">Manager</span></h1>
               </router-link>
           </div>
           <ul class="title-wrapper">
@@ -47,6 +48,7 @@
               </li> 
           </ul>
           </transition>
+        </div>
      </header>
 </template>
 
@@ -89,16 +91,27 @@
 </script>
 
 <style scoped>
-
 header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+    z-index: 111;
+    border-bottom: 2px solid rgba(0, 0, 255, 0.297) ;
+}
+
+.header{
     display: flex ;
     display: -webkit-box;
     display: -ms-flexbox;
     flex-direction: row ;
     align-items: center ;
-    justify-content: space-between ;
-    padding: .5rem  3rem;
-    background: #eee;
+    justify-content: space-between;
+    padding: .2rem  3rem;
+    max-width: 1440px;
+    width: 80%;
+    margin: 0px auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -134,12 +147,20 @@ ul.title-wrapper-mobile{
     left: 0;
     background: #eee;
     z-index: 1111;
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
 ul li{
-    padding: 5px 15px;
-    font-size: 2rem;
+    padding: 3px 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: blue;
+}
+
+ul li:hover{
+    background: blue;
+    color: #eee;
+    border-radius: 10px;    
 }
 
 .hamburger-wrapper{
@@ -154,7 +175,8 @@ ul li{
     top: 0 ;
     font-size: 24px ;
     cursor: pointer;
-    z-index: 2222 ;
+    z-index: 2222;
+    
 }
 
 

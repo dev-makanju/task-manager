@@ -1,87 +1,64 @@
 <template>
 <div class="container">
     <div class="landing-page-image main-screen-wrapper">
-         <div class="landing-screen">
-             <img src="../assets/bgr.jpg" alt="">
+        <div class="landing-screen">
+            <img src="../assets/bgr.jpg" alt="" onerror="this.style.display='none'">
         </div>
         <div class="image-overlay"></div>
         <div class="image-overlay-wrapper">
-             <div class="l-image-info ">
+            <div class="l-image-info ">
                 <vue-typed-js :strings="['setting up an account with us', 'managing your todo list']">
                     <h1>You can maximise your daily app project by <span class="typing"></span></h1>
                 </vue-typed-js>
              </div>
              <div class="l-image-info">
-                <router-link class="btn-btn-link"  :to="{name:'signUp'}">Get started</router-link>
+                <router-link class="btn-btn-link"  :to="{name:'signUp'}">Sign Up</router-link>
              </div>
         </div>
     </div>
     <div class="banner">
-           <div class="banner__child">
-                <div>
-                    <h1>Simple</h1>
-                    <p>but</p>
-                    <h1>Elegant</h1>
+            <div class="banner__child text">
+                <div class="text-content">
+                        <h1>Work Perfectly with Task Manager</h1>
+                        <p>Work efficiently with confidence that you are not out of schedule. Create , manage , and ,make use of daily activities judiciously with task Manager.</p>
+                    <div class="focus">
+                        <router-link class="btn-sign-up"  :to="{name:'signUp'}">
+                            <font-awesome-icon class="icon-banner" :icon="['fas', 'lock-open']"/>
+                            Sign in
+                        </router-link>
+                    </div>
                 </div>
-                <div class="focus">
-                    <p>Focus on the feature and functionality, we are growing</p>
-                </div>
-           </div>
-           <div class="banner__child">
-                <div class="vedio__preview">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tCRbVEGHZlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+           <div class="banner__child phone">
+                <div class="phone__preview">
+                    <img src="@/assets/phone.png" onerror="this.style.display='none'">
                 </div>
            </div>
     </div>
     <!----landing page--->
     <div class="landing-screen main-screen">
-        <div class="landing-screen-item header">
-            <h2 class="about-info-header">You can maximise your daily app project by setting up an account with us</h2>
+        <div class="">
+            <div class="banner-image-wrapper header">
+                <div class="header-wrapper">
+                    <ul>
+                        <h1>0</h1>
+                        <h1>1</h1>
+                    </ul>
+                    <div class="header-wrapper-content">
+                        <li><h1>A Little story on how you should get started.</h1></li> 
+                        <li><p>You should make use of task manager on a daily basis, it will help you to increase productivity...</p></li>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-image-wrapper">
+                <div class="banner-img">
+                    <img src="@/assets/bgr.jpg" onerror="this.style.display='none'">
+                </div>
+                <div class="banner-img">
+                    <img src="@/assets/dash.png" onerror="this.style.display='none'">
+                </div>
+            </div>
         </div>
-        <div class="landing-screen-item main">
-            <div class="main-flex-items children">
-                <div v-scrollanimation class="children-items">
-                    <div class="picture-info">
-                        <img src="../assets/Screenshot from 2022-01-21 20-18-48.png" alt="">
-                    </div>
-                    <div class="picture-info">
-                        <h3>Open an account</h3>
-                    </div>
-                </div>
-                <div v-scrollanimation class="children-items">
-                    <div class="picture-info">
-                        <img src="../assets/Screenshot from 2022-01-21 20-18-40.png" alt="">
-                    </div>
-                    <div class="picture-info">
-                        <h3>Sign in to your account</h3>
-                    </div>
-                </div>
-                <div v-scrollanimation class="children-items">
-                    <div class="picture-info">
-                        <img src="../assets/Screenshot from 2022-01-21 20-18-26.png" alt="">
-                    </div>
-                    <div class="picture-info">
-                        <h3>dashboard</h3>
-                    </div>
-                </div>
-                <div v-scrollanimation class="children-items">
-                    <div class="picture-info">
-                        <img src="../assets/bgr.jpg" alt="">
-                    </div>
-                    <div class="picture-info">
-                        <h3>Visit our website</h3>
-                    </div>
-                </div>
-             </div>
-             <div class="main-flex-items">
-                  <div class="about-wrapper">
-                      <h1 style="font-weight: 400 ;font-size: 30px;">About us</h1>
-                      <p v-scrollanimation class="about-info">
-                          Hi there, Thanks for visiting!. Task Timer is a schedule management system that helps you track your daily progress, manage your work schedules and also gives you the boost to achieve productivity. This project is one of my few projects and it has a whole lot of features to make thing simple for you, and also working efficiently for task scheduling. You might be wondering How do i start?, here is it <router-link style="font-weight:bold" :to="{name:'signUp'}">register</router-link>  as a member , or  <router-link style="font-weight:bold" :to="{name:'signUp'}">login</router-link> to your account. After then, you have access to your personalised dashboard. follow the on screen guilde and you will be fine. Thanks for choosing task timer as your new tool!.   
-                      </p>
-                  </div>
-             </div>
-         </div>
     </div>
 </div>
 
@@ -95,20 +72,21 @@
 
 <style>
 /***********overlay**********/
-.vedio__preview{
-    border-radius: 5px ;
-    box-shadow: 0px 2px 55px 3px rgb(2 , 40 , 129);
+.phone__preview img{
+    border-radius: 5px;
     overflow: hidden ;
     max-width: 100%;
-    height: auto ;
-    width: auto\9; /* ie8 */
+    width: 300px;
+    object-fit: cover;
 }
 
 .banner{
+    max-width: 1440px;
+    margin: 0px auto;
     position: relative;
-    height: 500px ;
-    background: #2451B9;
     display: flex ;
+    height: 700px;
+    width: 80%;
     flex-direction: row;
 }
 
@@ -122,14 +100,38 @@
 .banner__child{
     display: flex;
     flex: 1;
+}
+
+.banner__child.phone{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.banner__child.text{
+    display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
+.text-content{
+    min-height: 300px;
+}
+
+.text-content h1{
+    color: #2451B9;
+}
+
+.text-content p{
+    color: #2451B9;
+    font-size: 14px;
+    text-transform: lowercase;
+}
 
 /*******end overlay*********/
-
 
 .typing{
    text-transform: lowercase;
@@ -137,6 +139,9 @@
 
 .l-image-info{
     margin: 10px;
+    width: 80%;
+    max-width: 1440px;
+    margin: 0px auto;
 }
 
 .l-image-info h1 {
@@ -144,7 +149,6 @@
     word-spacing: 2px;
     font-size: 30px;
     font-weight: 300;
-
 }
 
 .btn-btn-link{
@@ -154,12 +158,66 @@
     font-size: 17px;
     background: rgb(36, 81, 185);
     margin-top: 20px;
+    transition: .5s ease;
+    position: absolute ;
+    bottom: 4rem;
+}
+
+.btn-sign-up{
+    padding: 10px 20px;
+    border-radius: 5px ;
+    color: #fff;
+    font-size: 17px;
+    background: rgb(36, 81, 185);
+    margin-top: 20px;
+    transition: .5s ease;
+    box-shadow: 0px 2px 5px 7px rgba(0 , 0 , 0 , .1);
+}
+
+.focus{
+    margin-top: 3rem;
+}
+
+.btn-btn-link:hover{
+    font-size: 19px;
+    box-shadow: 0px 2px 5px 7px rgba(0 , 0 , 0 , .1);
 }
 
 .landing-screen-item.header{
-    display: flex ;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.header-wrapper ul{
+    border: 2px solid rgba(0, 0, 255, 0.361);
+    float: left;
+    padding: 10px;
+    box-shadow: 0px 2px 15px 7px rgba(0 , 0 , 0 , .1);
+}
+
+.header-wrapper ul h1{
+    color: #2451B9;
+}
+
+.landing-screen-item.header h1{
+    float: left ;
+    font-weight: bolder;
+}
+
+.header-wrapper-content li p{
+    color: blue;
+    text-transform: lowercase;
+    padding: 0px .8rem;
+}
+
+.header-wrapper-content li h1{
+    color: blue;
+    font-weight: 600;
+}
+
+.banner-image-wrapper.header{
+   padding: 30px 0px;
 }
 
 .about-wrapper{
@@ -218,18 +276,18 @@
 }
 
 .image-overlay{
-    position: absolute;
-    background: #000;
-    height: 500px ;
+    position: absolute ;
+    background: #000 ;
+    height: 70vh ;
     object-fit: cover ;
-    width: 100%;
-    top: 0;
+    width: 100% ;
+    top: 0 ;
     opacity: .7 ;
 }
 
 .image-overlay-wrapper{
     position: absolute;
-    height: 500px ;
+    height: 70vh ;
     object-fit: cover ;
     width: 100%;
     top: 0;
@@ -239,10 +297,22 @@
     flex-direction: column ;
 }
 
+.landing-screen.main-screen{
+    width: 80%;
+    max-width: 1440px;
+    margin: 0px auto;
+}
+
+.banner-image-wrapper{
+    display: grid ;
+    grid-template-columns: 1fr 400px;
+    gap: 2.5rem;
+}
+
 .landing-screen img{
     object-fit: cover;
     width: 100% ;
-    height: 500px ;
+    height: 70vh ;
     background-position: center;
 }
 
