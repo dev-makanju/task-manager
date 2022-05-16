@@ -43,14 +43,20 @@
      }
 
      .footer{
-         margin-top: 10%;
-         display: flex ;
-         flex-direction: row ;
-         padding: 5px;
-         justify-content:space-between ;
-         width: 80%;
-         max-width: 1440px;
-         margin: 0px auto;
+        margin-top: 10%;
+        display: flex ;
+        flex-direction: row ;
+        padding: 5px;
+        justify-content:space-between ;
+        width: 80%;
+        max-width: 1440px;
+        margin: 0px auto;
+     }
+
+     @media (max-width: 1024px) {
+        .footer{
+           width: 95%;
+        }
      }
 
      @media (min-width: 450px) {
@@ -60,11 +66,11 @@
      }
 
      @media (min-width: 600px) {
-         footer{
-         flex-direction: row;
-         padding: 10px 40px;
-         height: 200px;
-     }
+        footer{
+           flex-direction: row;
+           padding: 10px 40px;
+           height: 200px;
+        }
      }
 
      .brand-name{

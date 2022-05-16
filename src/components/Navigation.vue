@@ -114,6 +114,12 @@ header{
     margin: 0px auto;
 }
 
+@media (max-width: 1024px) {
+    .header{
+        width: 90%;
+    }
+}
+
 @media only screen and (max-width: 768px) {
    header{
        padding: .5rem;

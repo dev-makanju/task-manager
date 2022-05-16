@@ -10,31 +10,31 @@
                 <vue-typed-js :strings="['setting up an account with us', 'managing your todo list']">
                     <h1>You can maximise your daily app project by <span class="typing"></span></h1>
                 </vue-typed-js>
-             </div>
-             <div class="l-image-info">
+            </div>
+            <div class="l-image-info">
                 <router-link class="btn-btn-link"  :to="{name:'signUp'}">Sign Up</router-link>
-             </div>
+            </div>
         </div>
     </div>
 
     <div class="banner">
-            <div class="banner__child text">
-                    <div v-scrollanimation class="text-content">
-                        <h1>Work Perfectly with Task Manager</h1>
-                        <p>Work efficiently with confidence that you are not out of schedule. Create , manage , and ,make use of daily activities judiciously with task Manager.</p>
-                    <div class="focus">
-                        <router-link class="btn-sign-up"  :to="{name:'signUp'}">
-                           <font-awesome-icon class="icon-banner" :icon="['fas', 'lock-open']"/>
-                           Sign in
-                        </router-link>
-                    </div>
+        <div class="banner__child text">
+                <div v-scrollanimation class="text-content">
+                    <h1>Work Perfectly with Task Manager</h1>
+                    <p>Work efficiently with confidence that you are not out of schedule. Create , manage , and ,make use of daily activities judiciously with task Manager.</p>
+                <div class="focus">
+                    <router-link class="btn-sign-up"  :to="{name:'signUp'}">
+                        <font-awesome-icon class="icon-banner" :icon="['fas', 'lock-open']"/>
+                        Sign in
+                    </router-link>
                 </div>
             </div>
-           <div class="banner__child phone">
-                <div v-scrollanimation class="phone__preview">
-                    <img src="@/assets/phone.png" onerror="this.style.display='none'">
-                </div>
-           </div>
+        </div>
+        <div class="banner__child phone">
+            <div v-scrollanimation class="phone__preview">
+                <img src="@/assets/phone.png" onerror="this.style.display='none'">
+            </div>
+        </div>
     </div>
 
     <!----landing page--->
@@ -56,7 +56,7 @@
                 <div class="banner-img">
                     <img src="@/assets/bgr.jpg" onerror="this.style.display='none'">
                 </div>
-                <div class="banner-img">
+                <div class="banner-img none">
                     <img src="@/assets/dash.png" onerror="this.style.display='none'">
                 </div>
             </div>
@@ -100,6 +100,8 @@
 
 .main-div{
     width: 90%;
+    padding: 10rem 0rem;
+    margin: 0px auto;
 }
 
 .mobile{
@@ -118,18 +120,18 @@
     justify-content: center ;
     align-items: center;
     margin: 0px auto;
-    width: 90%;
 }
 
-
-@media screen and (min-width: 900px){
+@media (min-width: 1024px){
     .main-div{
         width: 80%;
         max-width: 1440px ;
         margin: 0px auto ;
         padding: 10rem 0rem;
     }
+}   
 
+@media screen and (min-width: 900px){
     .desktop{
         display: block;
         height: 300px ;
@@ -141,18 +143,15 @@
     }
 
     .main-div-content{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
     }
-
-
 }
 
-@media screen {
-    
+.third-banner-wrapper{
+    flex: 1;
 }
-
 
 .third-banner-wrapper.text{
     display: flex;
@@ -199,8 +198,9 @@
 /***********overlay**********/
 .phone__preview img{
     border-radius: 5px;
-    overflow: hidden ;
+    overflow: hidden;
     max-width: 100%;
+    min-height: 500px;
     width: 300px;
     object-fit: cover;
 }
@@ -210,9 +210,22 @@
     margin: 0px auto;
     position: relative;
     display: flex ;
+    margin-top: 5rem ;
     height: 700px;
     width: 80%;
     flex-direction: row;
+}
+
+@media (max-width: 768px){
+    .banner-img.none{
+        display: none;
+    }
+}
+
+@media (max-width: 1024px ) {
+    .banner{
+        width: 90% ;
+    }
 }
 
 @media (max-width: 700px) {
@@ -234,6 +247,13 @@
     align-items: center;
 }
 
+@media (max-width: 700px){
+    .banner__child.phone {
+       justify-content: center;
+       align-items: center;
+    }
+}
+
 .banner__child.text{
     display: flex;
     flex: 1;
@@ -243,8 +263,9 @@
 }
 
 .text-content{
-    min-height: 300px;
+    min-height: 100px;
 }
+
 
 .text-content h1{
     color: #2451B9;
@@ -267,6 +288,12 @@
     width: 80%;
     max-width: 1440px;
     margin: 0px auto;
+}
+
+@media (max-width: 1024px){
+    .l-image-info{
+        width: 90%;
+    }
 }
 
 .l-image-info h1 {
@@ -438,10 +465,35 @@
     margin: 0px auto;
 }
 
+@media (max-width: 1024px){
+    .landing-screen.main-screen{
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px){
+    .landing-screen.main-screen{
+        margin-top: 20rem;
+    }
+}
+
+@media (max-width: 480px){
+    .landing-screen.main-screen{
+        margin-top: 25rem;
+    }
+}
+
 .banner-image-wrapper{
     display: grid ;
     grid-template-columns: 1fr 400px;
     gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .banner-image-wrapper {
+        display: grid ;
+        grid-template-columns: 1fr;
+    }
 }
 
 .landing-screen img{
