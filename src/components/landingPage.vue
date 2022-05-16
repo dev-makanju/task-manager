@@ -62,7 +62,6 @@
             </div>
         </div>
     </div>
-
     <!--@third banner-->
     <div class="main-div">
         <div class="main-div-content">
@@ -93,7 +92,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 /************
 ***  third banner
 *************/
@@ -420,16 +419,19 @@
     }
 }
 
-.phone__preview.before-enter{
-    transform: scale(.8);
-    transition: 1s ease-in-out all; 
-    opacity:.1;
-}
 
-.phone__preview.enter{
-    opacity: 1;
-    transform: scale(.7);
-    transition: 1s ease-in-out all; 
+@media (max-width: 700px){
+    .phone__preview.before-enter{
+        transform: scale(.8);
+        transition: 1s ease-in-out all; 
+        opacity:.1;
+    }
+
+    .phone__preview.enter{
+        opacity: 1;
+        transform: scale(.7);
+        transition: 1s ease-in-out all; 
+    }
 }
 
 

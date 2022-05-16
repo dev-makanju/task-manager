@@ -295,7 +295,6 @@
     grid-area: '.rightbar';
     display: flex ;
     flex-direction: column ;
-    height: 100vh;
 }
 
 .right-bar-card{
@@ -400,7 +399,6 @@
     flex-wrap: wrap ;
     padding: 2px 15px;
     flex-direction: column ;
-    height: 100vh;
 }
 
 .middle-design-wrapper{
