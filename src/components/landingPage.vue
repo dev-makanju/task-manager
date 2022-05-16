@@ -120,6 +120,7 @@
     justify-content: center ;
     align-items: center;
     margin: 0px auto;
+    overflow: hidden;
 }
 
 @media (min-width: 1024px){
@@ -183,16 +184,18 @@
     inset: 0;
 }
 
-.third-banner-wrapper.images.before-enter{
-    transform: translateX(0px) translateY(0px);
-    opacity: 1;  
-    transition: 1s ease-in-out all;  
-}
+@media (min-width: 700px) {
+    .third-banner-wrapper.images.before-enter{
+       transform: translateX(0px) translateY(0px);
+       opacity: 1;  
+       transition: 1s ease-in-out all;  
+    }
 
-.third-banner-wrapper.images.enter{
-    transform: translateX(25px) translateY(35px);
-    transition: 1s ease-in-out all; 
-    opacity: 1;  
+    .third-banner-wrapper.images.enter{
+        transform: translateX(25px) translateY(35px);
+        transition: 1s ease-in-out all; 
+        opacity: 1;  
+    }   
 }
 
 /***********overlay**********/
@@ -386,18 +389,35 @@
     font-weight: 350;
 } 
 
-.header-wrapper-content.before-enter{
-    transform: translateX(50px);
-    transition: 1s ease-in-out all; 
-    opacity:.1;
+@media (min-width: 768px) {
+    .header-wrapper-content.before-enter{
+        transform: translateX(50px);
+        transition: 1s ease-in-out all; 
+        opacity:.1;
+    }
+
+    .header-wrapper-content.enter{
+        opacity: 1;
+        transform: translateX(0px);
+        transition: 1s ease-in-out all; 
+        word-spacing: 2px;
+        font-weight: 350;
+    }   
 }
 
-.header-wrapper-content.enter{
-    opacity: 1;
-    transform: translateX(0px);
-    transition: 1s ease-in-out all; 
-    word-spacing: 2px;
-    font-weight: 350;
+
+@media (min-width: 700px){
+    .phone__preview.before-enter{
+        transform: scale(.8);
+        transition: 1s ease-in-out all; 
+        opacity:.1;
+    }
+
+    .phone__preview.enter{
+        opacity: 1;
+        transform: scale(.9);
+        transition: 1s ease-in-out all; 
+    }
 }
 
 .phone__preview.before-enter{
@@ -408,7 +428,7 @@
 
 .phone__preview.enter{
     opacity: 1;
-    transform: scale(1);
+    transform: scale(.7);
     transition: 1s ease-in-out all; 
 }
 

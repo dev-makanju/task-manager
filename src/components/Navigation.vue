@@ -163,11 +163,6 @@ ul li{
     color: blue;
 }
 
-ul li:hover{
-    background: blue;
-    color: #eee;
-    border-radius: 10px;    
-}
 
 .hamburger-wrapper{
     position: relative;
