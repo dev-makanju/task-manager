@@ -99,11 +99,60 @@
 *************/
 
 .main-div{
-    width: 80% ;
-    max-width: 1440px ;
-    margin: 0px auto ;
-    padding: 10rem 0rem;
+    width: 90%;
 }
+
+.mobile{
+    max-width: 400px;
+    height: 300px;
+    display: block;
+}
+
+.desktop{
+    display: none;
+}
+
+.main-div-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+    margin: 0px auto;
+    width: 90%;
+}
+
+
+@media screen and (min-width: 900px){
+    .main-div{
+        width: 80%;
+        max-width: 1440px ;
+        margin: 0px auto ;
+        padding: 10rem 0rem;
+    }
+
+    .desktop{
+        display: block;
+        height: 300px ;
+        max-width: 400px;
+    }
+
+    .mobile{
+        display: none;
+    }
+
+    .main-div-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+
+}
+
+@media screen {
+    
+}
+
 
 .third-banner-wrapper.text{
     display: flex;
@@ -121,27 +170,10 @@
     font-size: 18px;
 }
 
-.main-div-content{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
 .third-banner-wrapper.wrapper{
     position: relative ;
     height: 400px ;
     max-width: 500px ;
-}
-
-.mobile{
-    max-width: 400px;
-    height: 300px;
-    display: none;
-}
-
-.desktop{
-    height: 300px;
-    max-width: 400px;
 }
 
 .third-banner-wrapper.background{
