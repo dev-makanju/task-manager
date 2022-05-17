@@ -19,6 +19,15 @@ export default new Vuex.Store({
       taskInput: "",
   },
 
+  getters:{
+      getFilteredTask(state){
+        return state.tasks.slice(0 , 3)
+      },
+      getTaskLength(state){
+        return state.tasks.length
+      },
+  },
+
   mutations: {
     SAFE_TASK(state , payload){
        state.tasks = payload; 
@@ -62,7 +71,7 @@ export default new Vuex.Store({
         } 
         return response;
       }catch(err){
-          return err.response
+        return err.response
       }
     },
 
@@ -75,21 +84,22 @@ export default new Vuex.Store({
         }
         return response;
       }catch(err){
-          return err.response
+        return err.response
       }
     },
 
     async getPostById({commit} ,post){
       try{
-         const response = await eventServices.getSinglePostById(post);
-         if(response.status === 'success'){
-            commit("POST_STATUS");
-         }
-         return response;
+        const response = await eventServices.getSinglePostById(post);
+        if(response.status === 'success'){
+          commit("POST_STATUS");
+        }
+        return response;
       }catch(err){
-         return err.response
+        return err.response
       }
-    }
+    },
+
   },
 
   modules: {

@@ -1,6 +1,6 @@
 <template>
     <div class="rightbar">
-            <div class="wrapper-items">
+        <div class="wrapper-items">
                  <div class="rightbar-contain">
                   <div class="right-bar-card">
                       <div class="rightbar-card">
@@ -18,66 +18,55 @@
                  </div>
              </div>
              <div class="rightbar-contain">
-                  <router-link :to="{ name:'AddTask'}">
+                   <router-link :to="{ name:'AddTask'}">
                       <ul class="add-task">
-                      <li>
+                        <li>
                           Add Task
-                      </li>
-                  </ul>
+                        </li>
+                     </ul>
                   </router-link>
              </div>
              <div class="rightbar-contain">
                 <h2 class="date-time">Calender</h2>
                 <p class="date-time">{{ new Date().toISOString().substring(0 , 10) }}</p> 
-                <div v-if="this.$store.state.auth.taskCount != 0" class="task-tab">
-                    <div class="recent">
-                        <div class="recent-info">
-                           <p>09:00</p>
-                        </div>
-                        <div class="recent-info purple">
-                           <p>5 post on instagram</p>
-                        </div>
-                    </div>
-                    <!---second--->
-                    <div class="recent">
-                        <div class="recent-info">
-                           <p>09:00</p>
-                        </div>
-                        <div class="recent-info purple">
-                           <p>5 post on instagram</p>
+                <div v-show="this.getFilteredTask != null">
+                    <div v-for="(task , index) in this.getFilteredTask" :key="index" class="task-tab">
+                        <div class="recent">
+                            <div class="recent-info">
+                               <p>{{ timeFormat(task.createAt)  }}</p>
+                            </div>
+                            <div class="recent-info purple">
+                               <p>{{ task.title }}</p>
+                            </div>
                         </div>
                     </div>
-                    <!--third--->
-                    <div class="recent">
-                        <div class="recent-info">
-                            <p>09:00</p>
-                        </div>
-                        <div class="recent-info purple">
-                            <p>5 post on instagram</p>
-                        </div>
-                    </div>
-                <div v-if="this.$store.state.auth.taskCount == 0" class="no-task-tab">
-                </div>
-                    <span class="post-not-created">No Task Created</span>
-                </div>
-             </div>
+                <div/>    
             </div>
+            </div>   
         </div>
-
+    </div>    
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
     export default {
         name:'rightTab',
-        components:{},
+        components:{
+            
+        },
         data(){
             return{
+
             }
         },
-        mounted(){
-        },
         methods:{
-        
+            timeFormat(date){
+                const time = new Date(date)
+                return time.getHours()+":"+time.getMinutes();
+            }
+        },
+        computed:{
+            ...mapGetters(['getFilteredTask','getTaskLength'])
         }
     }
 </script>

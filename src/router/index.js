@@ -57,7 +57,7 @@ const routes = [
       component:CreateTask,
       meta:{
         title:'Create-task',
-        requiresAuth: true ,
+        requiresAuth: true,
       }
     },
     {

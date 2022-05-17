@@ -2,8 +2,7 @@
     <main class="main">
             <div class="main-overview">
                 <adminHeader @open-navbar="$emit('open-navbar')" :isAdminMobile="isAdminMobile"/>
-                <!---middle card design--> 
-                    
+                <!---middle card design-->      
                         <div class="middle-design-wrapper cards-design">
                             <div class="right-bar-card">
                                 <div class="rightbar-card">
@@ -15,7 +14,25 @@
                                     <div class="six"></div>
                                     <div class="seven"></div>
                                 </div>
-                                <div class="task-wrapp">
+                                <div v-if="this.$store.state.auth.load" class="task-wrapp">
+                                    <h1 style="font-size: 40px;">
+                                        <vue-skeleton-loader
+                                            type="rect"
+                                            :width="70"
+                                            :height="10"
+                                            animation="fade"/>
+                                    </h1>
+                                    <div class="ctext-info">
+                                        <h1>
+                                            <vue-skeleton-loader
+                                                type="rect"
+                                                :width="70"
+                                                :height="10"
+                                                animation="fade"/>
+                                        </h1>
+                                    </div>    
+                                </div>
+                                <div v-if="!this.$store.state.auth.load" class="task-wrapp">
                                     <h1 style="font-size: 40px;">{{ getCurrentTime() }}</h1>
                                     <div class="ctext-info">
                                         <h1>Hello, &nbsp; {{ user.name }}</h1>
@@ -23,11 +40,10 @@
                                 </div>
                            </div>
                     </div>
-
                     <div class="middle-design-wrapper new-task">
-                       <div class="item-wrapper">
-                         <h2 class="weekly-text">Weekly Tasks</h2>
-                       </div>
+                        <div class="item-wrapper">
+                           <h2 class="weekly-text">Weekly Tasks</h2>
+                        </div>
                     </div>
                     
                 <div class="get-all-task">
@@ -73,11 +89,13 @@
 <script>
     import adminHeader from '../components/admin-header'
     import { mapGetters } from 'vuex'
+    import VueSkeletonLoader from 'skeleton-loader-vue';
+
     export default {
         name:"adminMain",
         props:['isAdminMobile'],
         components:{
-           adminHeader,
+           adminHeader,VueSkeletonLoader 
         },
         mounted(){
            
