@@ -94,6 +94,7 @@ export default {
                     if(res.status === 200 ){
                         this.loading = false
                         this.$router.push('/dashboard');
+                        location.reload();
                     }this.loading = false,
                     this.showError = true;
                     this.errorMessage = res.data.message;

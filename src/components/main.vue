@@ -4,24 +4,24 @@
                 <adminHeader @open-navbar="$emit('open-navbar')" :isAdminMobile="isAdminMobile"/>
                 <!---middle card design--> 
                     
-                    <div class="middle-design-wrapper cards-design">
-                        <div class="right-bar-card">
-                        <div class="rightbar-card">
-                             <div class="one"></div>
-                             <div class="two"></div>
-                             <div class="three"></div>
-                             <div class="four"></div>
-                             <div class="five"></div>
-                             <div class="six"></div>
-                             <div class="seven"></div>
-                        </div>
-                        <div class="task-wrapp">
-                          <h2></h2>
-                            <div class="ctext-info">
-                            </div>    
-                       </div>
-                    </div>
-  
+                        <div class="middle-design-wrapper cards-design">
+                            <div class="right-bar-card">
+                                <div class="rightbar-card">
+                                    <div class="one"></div>
+                                    <div class="two"></div>
+                                    <div class="three"></div>
+                                    <div class="four"></div>
+                                    <div class="five"></div>
+                                    <div class="six"></div>
+                                    <div class="seven"></div>
+                                </div>
+                                <div class="task-wrapp">
+                                    <h1 style="font-size: 40px;">{{ getCurrentTime() }}</h1>
+                                    <div class="ctext-info">
+                                        <h1>Hello, &nbsp; {{ user.name }}</h1>
+                                    </div>    
+                                </div>
+                           </div>
                     </div>
 
                     <div class="middle-design-wrapper new-task">
@@ -72,12 +72,32 @@
 
 <script>
     import adminHeader from '../components/admin-header'
+    import { mapGetters } from 'vuex'
     export default {
         name:"adminMain",
         props:['isAdminMobile'],
         components:{
            adminHeader,
         },
+        mounted(){
+           
+        },
+        methods:{
+           getCurrentTime(){
+                const date = new Date();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();    
+                const ampm = hours >= 12 ? 'pm' : 'am';
+                hours %= 12;
+                hours = hours || 12;    
+                minutes = minutes < 10 ? `0${minutes}` : minutes;
+                const strTime = `${hours}:${minutes} ${ampm}`;
+                return strTime;
+           }
+        },
+        computed:{
+            ...mapGetters(['user']),
+        }
     }
 </script>
 

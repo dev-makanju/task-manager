@@ -33,6 +33,9 @@
                 isActive: null
             }
         },
+        mounted(){
+            this.$store.dispatch('getUser').auth
+        },
         created(){
             this.checkSreensize();
             addEventListener("resize" , this.checkSreensize)

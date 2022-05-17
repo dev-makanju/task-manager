@@ -56,8 +56,8 @@
                             <p>5 post on instagram</p>
                         </div>
                     </div>
-                </div>
                 <div v-if="this.$store.state.auth.taskCount == 0" class="no-task-tab">
+                </div>
                     <span class="post-not-created">No Task Created</span>
                 </div>
              </div>

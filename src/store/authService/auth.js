@@ -93,14 +93,13 @@ const actions = {
 
     //get all user
     async getUser({commit , rootState }){
-        try{
+        try{  
           commit('auth_true');
           const response = await eventServices.getUserInfo();
           if(response.status){   
             const token = localStorage.getItem("token");
             const user = response.data.user;
             rootState.tasks = user.posts 
-            console.log(user.posts)
             const no_of_posts = response.data.no_of_posts
             const task = response.data.posts
             const data = {
@@ -111,6 +110,8 @@ const actions = {
             }  
             commit("auth_info",data)
             commit('auth_false');
+
+            return response;
           }
         }catch(err){
             return err.response

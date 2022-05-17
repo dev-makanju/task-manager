@@ -80,15 +80,15 @@
                 appError: null
             }
         },
-        onMounted(){
-           this.$store.dispatch('getUser').auth
+        mounted(){ 
+           this.getUserTask()
         },
         created(){
             this.checkSreensize();
             addEventListener("resize", this.checkSreensize)
         },
         methods:{
-            ...mapActions(['deleteTask']),
+            ...mapActions(['deleteTask' , 'getUser']),
             //check screen size
             checkSreensize(){
                 this.adminScreenWidth = window.innerWidth
@@ -113,6 +113,16 @@
             formatDate(date){
                 const value = new Date(date)
                 return value.toLocaleDateString()
+            },
+
+            getUserTask(){
+                this.getUser().then(res => {
+                    if(res.status === 200){
+                       console.log('ok')
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             },
 
             deletePost(id){
